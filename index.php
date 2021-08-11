@@ -4,9 +4,7 @@
 require_once 'conexiones/producto.php';
 $oproducto = new producto();
 $consulta = $oproducto->listarproducto();
-require_once 'conexiones/imagenes.php';
-$oimagenes = new imagenes();
-$oimagenes->guardarimagen();
+
 
 
 ?>
@@ -29,58 +27,76 @@ $oimagenes->guardarimagen();
   <div class="container-fluid">
 
     <div class="row">
+    <div class='carrito'>
+          
+          <p class="carrito-total">
+            <span class="simpleCart_quantity">0</span> item(s) <span class="simpleCart_total">$0.00</span>
+          </p>
+
+          <div class="bolsa">
+            <div class="simpleCart_items"></div>
+            <div class="opciones">
+              <a class="boton simpleCart_empty" href="javascript:void(0)">Vaciar carrito</a>
+              <a class="boton simpleCart_checkout" href="#">Checkout</a>
+            </div>
+          </div>
+
+        </div>
 
       <?php
       foreach ($consulta as $registro) {
       ?>
         <div class="col col-xl-4 col-md-6 col-12">
           
+          <?php
+          require_once 'conexiones/imagenes.php';
+          $oimagenes = new imagenes();
+          $oimagenes->idproducto = $registro['id'];
+          $vistaimagen = $oimagenes->consultarimagen();
+          ?>
+          <div class="card-group mt-3">
 
-            <div class="card-group mt-3">
-
-              <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-indicators">
-                  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                </div>
-                <div class="carousel-inner">
-                  <div class="carousel-item active">
-                    <img src="img/cerdo.jpeg" class="d-block w-100" alt="...">
-                  </div>
-                  <div class="carousel-item">
-                    <img src="img/cerdo01.jpeg" class="d-block w-100" alt="...">
-                  </div>
-                  <div class="carousel-item">
-                    <img src="img/cerdo02.jpeg" class="d-block w-100" alt="...">
-                  </div>
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Next</span>
-                </button>
+            <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+              <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
               </div>
+              <div class="carousel-inner">
+                <?php
+                $bandera = true;
+                foreach ($vistaimagen as $registroimg) {
+                ?>
+                  <div class="carousel-item <?php if ($bandera) {
+                                              $bandera = false;
+                                              echo "active";
+                                            } ?>">
+                    <img src="<?php echo $registroimg['archivos']; ?>" data-bs-interval="10000" class="d-block w-100" alt="...">
+                  </div>
 
-              <div class="card">
-
-                <h5 class="card-title">CERDOS</h5>
-                <p><?php echo $registro['nombreProducto']; ?></p>
-                <p><?php echo $registro['detalleproducto']; ?></p>
-                <p><?php echo $registro['peso']; ?></p>
-                <p><?php echo $registro['precio'] . " " . $registro['tipopeso']; ?></p>
-                <a href="/PORCIMENDOZA/productos/detalleproducto.php?id=<?php echo $registro['id']; ?>" class="btn bg-info"> detalle del producto</a>
-
+                <?php
+                }
+                ?>
               </div>
+              
             </div>
+
+            <div class="card">
+
+              
+              <h5 class="card-title"><?php echo $registro['nombreProducto']; ?></h5>
+              <p><?php echo $registro['detalleproducto']; ?></p>
+              <p><?php echo $registro['peso']; ?></p>
+              <p><?php echo $registro['precio'] . " " . $registro['tipopeso']; ?></p>
+              <a href="/PORCIMENDOZA/productos/detalleproducto.php?id=<?php echo $registro['id']; ?>" class="btn bg-info"> detalle del producto</a>
+              <a class="item_add" href="javascript:;"> Añadir al carrito </a>
+            </div>
+          </div>
         </div>
-      
-    <?php
+
+      <?php
       }
-    ?>
+      ?>
     </div>
   </div>
 </body>

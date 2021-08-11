@@ -16,10 +16,19 @@ class imagenes
         $oconxion = new conectar();
         $conexion = $oconxion->conexion();
         $sql = "INSERT INTO imagenes (idproducto,archivos,eliminado) 
-        VALUES ('$this->idproducto','$this->archivos',false)"; 
-        
+        VALUES ('$this->idproducto','$this->archivos',false)";
+
         $result = mysqli_query($conexion, $sql);
         return $result;
-
+    }
+    function consultarimagen()
+    {
+        $oconxion = new conectar();
+        $conexion = $oconxion->conexion();
+        $sql = "SELECT * FROM imagenes WHERE idproducto=$this->idproducto";
+        $result = mysqli_query($conexion, $sql);
+        $result = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        return $result;
+    
     }
 }

@@ -17,6 +17,7 @@ $registro = $oproducto->consultarproducto();
 
 <body style="background-color: #ffffff;">
     <form action="editarproducto.php" method="get">
+        <input type="text" name="id"value ="<?php echo $_GET['id'];?>" style="display: none;">
         <div class="container">
             <div class="row align-items-center">
 

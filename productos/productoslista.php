@@ -14,19 +14,9 @@ require_once '../head.php';
     <div class="col-12">
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">PORCIMENDOZA</h3>
+          <h3 class="card-title">LISTA DE PRODUCTOS</h3>
 
-          <div class="card-tools">
-            <div class="input-group input-group-sm" style="width: 150px;">
-              <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
-
-              <div class="input-group-append">
-                <button type="submit" class="btn btn-default">
-                  <i class="fas fa-search"></i>
-                </button>
-              </div>
-            </div>
-          </div>
+          
         </div>
         <!-- tabla -->
         <div class="card-body table-responsive p-0">
@@ -38,6 +28,7 @@ require_once '../head.php';
                 <th>PESO DEL PRODUCTO</th>
                 <th>TIPO DE PESO</th>
                 <th>PRECIO</th>
+                <th><a  href="productos.php"><i class="fas fa-plus"></i> crear producto</a></th>
               </tr>
             </thead>
             <tbody>
@@ -109,5 +100,6 @@ require_once '../head.php';
   function eliminar(id) {
     document.getElementById('eliminar').value = id;
   }
+  </script>
 
-  // $('table').stacktable();
+ 

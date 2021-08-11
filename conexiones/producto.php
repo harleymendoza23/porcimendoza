@@ -88,10 +88,11 @@ class producto
         detalleproducto='$this->detalleproducto',
         peso='$this->peso',
         tipopeso='$this->tipopeso',
-        precio='$this->precio',
+        precio='$this->precio'
         WHERE id=$this->id";
         //se ejecuta la consulta
         $result=mysqli_query($conexion,$sql);
+        echo $sql;
         return $result;
     }
 

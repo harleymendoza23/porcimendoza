@@ -11,15 +11,15 @@
                 <section class="mb-4">
                     <!-- gmail -->
 
-                    <a href="mailto:mendozaharley86@gmail.com?subject=Questions&body=Escribe aquí si tienes preguntas" target="_blank"> <img src="img/gmail.png" width="45" height="45"> </a>
+                    <a href="mailto:mendozaharley86@gmail.com?subject=Questions&body=Escribe aquí si tienes preguntas" target="_blank"> <img src="http://localhost/PORCIMENDOZA/img/gmail.png" width="45" height="45"> </a>
 
                     <!-- whatsapp -->
 
-                    <a href="https://api.whatsapp.com/send?phone=3163213463" target="_blank"> <img src="img/whassapp.png" width="45" height="45"> </a>
+                    <a href="https://api.whatsapp.com/send?phone=3163213463" target="_blank"> <img src="//localhost/PORCIMENDOZA/img/whassapp.png" width="45" height="45"> </a>
 
 
                     <!-- facebook -->
-                    <a href="https://www.facebook.com/mendozaharley.mendozarojas/" target="_blank"> <img src="img/facebook.png" width="45" height="45"> </a>
+                    <a href="https://www.facebook.com/mendozaharley.mendozarojas/" target="_blank"> <img src="//localhost/PORCIMENDOZA/img/facebook.png" width="45" height="45"> </a>
 
                 </section>
                 <!-- centrar texto y darle color -->
