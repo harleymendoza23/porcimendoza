@@ -42,8 +42,8 @@ $registro = $oproducto->consultarproducto();
                         <option value="" disabled selected>tipo peso</option>
                         
                         <option value='libras' <?php if ($oproducto->tipopeso == "libras") echo "selected"; ?>>libras</option>
-                        <option value='kilo' <?php if ($oproducto->tipopeso == "kilo") echo "selected"; ?>>kilo</option>
-                        <option value='arroba' <?php if ($oproducto->tipopeso == "arroba") echo "selected"; ?>>arroba</option>
+                        <option value='kilo' <?php if ($oproducto->tipopeso == "kilo") echo "selected"; ?>>kilos</option>
+                        <option value='arroba' <?php if ($oproducto->tipopeso == "arroba") echo "selected"; ?>>arrobas</option>
 
 
                     </select>
@@ -51,7 +51,7 @@ $registro = $oproducto->consultarproducto();
                 </div>
                 <div class="col col-xl-3 col-md-6 col-12">
                     <label for="">precio del producto</label>
-                    <input class="form-control" type="text" name="precio" value="<?php echo $oproducto->precio; ?>">
+                    <input class="form-control" type="text" name="precio" id="separador" value="<?php echo $oproducto->precio; ?>">
                 </div>
 
             </div>
@@ -64,3 +64,27 @@ $registro = $oproducto->consultarproducto();
 </body>
 
 </html>
+<script>var separador = document.getElementById('separador');
+
+separador.addEventListener('keyup', (e) => {
+    var entrada = e.target.value.split('.').join('');
+    entrada = entrada.split('').reverse();
+    
+    var salida = [];
+    var aux = '';
+    
+    var paginador = Math.ceil(entrada.length / 3);
+    
+    for(let i = 0; i < paginador; i++) {
+        for(let j = 0; j < 3; j++) {
+          
+            if(entrada[j + (i*3)] != undefined) {
+                aux += entrada[j + (i*3)];
+            }
+        }
+        salida.push(aux);
+        aux = '';
+       
+        e.target.value = salida.join('.').split("").reverse().join('');
+    }
+}, false);</script>

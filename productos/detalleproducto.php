@@ -43,7 +43,7 @@ require_once '../head.php'; ?>
 
         ?>
 
-        <div class="card card-solid" style="background-color: #CACFD2;">
+        <div class="card card-solid" style="background-color: #E5E7E9;">
             <div class="card-body">
                 <div class="row">
 
@@ -117,7 +117,7 @@ require_once '../head.php'; ?>
 
                         <div class="bg-gray py-2 px-3 mt-4">
                             <h2 class="mb-0">
-                                <?php echo $oproducto->precio; ?>
+                               $/ <?php echo $oproducto->precio; ?>
                             </h2>
 
                         </div>

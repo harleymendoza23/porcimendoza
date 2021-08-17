@@ -38,16 +38,15 @@ require '../head.php';
 
 
                 <div class="col-md-6" style="color: #FBFCFC;">
-                    <h5 style="text-align:center">nombre del producto</h5>
+                    <h5 style="text-align:center" >nombre del producto</h5>
 
-                    <input class="form-control" type="text" name="nombreProducto">
+                    <input class="form-control" required minlength="10" maxlength="20" type="text" name="nombreProducto">
                 </div>
 
                 <div class="col-md-6" style="color: #FBFCFC;">
                     <h5 style="text-align:center">detalle del producto</h5>
                     <div class="form-floating">
-                        <textarea class="form-control" name="detalleproducto" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
-                        
+                        <textarea class="form-control" name="detalleproducto" id="floatingTextarea2" ></textarea>
                     </div>
                 </div>
 
@@ -59,13 +58,13 @@ require '../head.php';
                 </div>
 
                 <div class="col-md-6" style="color: #FBFCFC;">
-                    <div class="form-floating">
+                    <div>
                     <h5 style="text-align:center">seleccione el tipo de peso</h5>
                         <select class="form-select" name="tipopeso" id="floatingSelectGrid" aria-label="Floating label select example">
                             
                             <option value='libras'>libras</option>
-                            <option value='kilos'>kilos</option>
-                            <option value='arroba'>arroba</option>
+                            <option value='kilo'>kilos</option>
+                            <option value='arroba'>arrobas</option>
                         </select>
                        
                     </div>
@@ -73,11 +72,11 @@ require '../head.php';
 
                 <div class="col-md-6" style="color: #FBFCFC;">
                     <h5 style="text-align:center">precio del producto</h5>
-
-                    <input name="precio" type="text" id="DEMO" data-a-sign="" data-a-dec="," data-a-sep="." class="form-control">
+                  
+                    <input name="precio" type="text" id="separador"  class="form-control">
                 </div>
 
-                <!-- <label for="floatingTextarea">precio del producto</label> -->
+               
 
                 <center>
                     <div class="col-md-6">
@@ -102,3 +101,27 @@ require '../head.php';
 
 
 </html>
+<script>var separador = document.getElementById('separador');
+
+separador.addEventListener('keyup', (e) => {
+    var entrada = e.target.value.split('.').join('');
+    entrada = entrada.split('').reverse();
+    
+    var salida = [];
+    var aux = '';
+    
+    var paginador = Math.ceil(entrada.length / 3);
+    
+    for(let i = 0; i < paginador; i++) {
+        for(let j = 0; j < 3; j++) {
+          
+            if(entrada[j + (i*3)] != undefined) {
+                aux += entrada[j + (i*3)];
+            }
+        }
+        salida.push(aux);
+        aux = '';
+       
+        e.target.value = salida.join('.').split("").reverse().join('');
+    }
+}, false);</script>

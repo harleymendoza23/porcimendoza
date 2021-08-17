@@ -29,56 +29,36 @@
 </head>
 
 <body class="hold-transition sidebar-mini">
-  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
-
-    <div class="container-fluid">
-
-      <li style="list-style: none;" role="presentation"><a href="http://localhost/PORCIMENDOZA/index.php" class="navbar-brand">
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+  <div class="container-fluid">
+  <li style="list-style: none;" role="presentation"><a href="http:/PORCIMENDOZA/index.php" class="navbar-brand">
           <h4 class="card-title"><img class="imagen" width="80" heigth="70" src="https://images.vexels.com/media/users/3/242851/isolated/preview/96a5d53e7c121ea684c79a71ff25d93b-animales-urbangrunge-cr-4-1.png">PORCIMENDOZA</h4>
         </a></li>
-
-
-
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
-        <nav >
-          <div class="container-fluid">
-            <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
-              <ul class="navbar-nav">
-                <li class="nav-item dropdown">
-                  <a class="nav-link active dropdown-toggle" href="http://localhost/PORCIMENDOZA/productos/productos.php" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false"><strong><i class="fas fa-users-cog"></i> Administrador</strong></a>
-                  <ul class="dropdown-menu dropdown-menu-ligth" aria-labelledby="navbarDarkDropdownMenuLink">
-                 
-                    <li><a href="http://localhost/PORCIMENDOZA/productos/productoslista.php" class="nav-link active" aria-current="page"><i class="fas fa-user-tag"></i> lista de productos</a></li>
-                    <li><a href="http://localhost/NOTASESTUDIANTE/listarmodulo.php" class="nav-link active" aria-current="page"><i class="fas fa-layer-group"></i> Modulos</a></li>
-                  </ul>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </nav>
-
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-
-          <li class="nav-item"><strong><a class="nav-link active" aria-current="page" href="http://localhost/PORCIMENDOZA/index.php"><i class="fas fa-list"></i> PRODUCTOS</a></strong></li>
-
-        </ul>
-
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+      <li class="nav-item"><strong><a class="nav-link active" aria-current="page" href="http:/PORCIMENDOZA/index.php"><i class="fas fa-list"></i> PRODUCTOS</a></strong></li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <strong><i class="fas fa-users-cog"></i> Administrador</strong>
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <li><a href="http:/PORCIMENDOZA/productos/productoslista.php" class="nav-link active" aria-current="page"><i class="fas fa-user-tag"></i> lista de productos</a></li>
+                    <li><a href="http:/NOTASESTUDIANTE/listarmodulo.php" class="nav-link active" aria-current="page"><i class="fas fa-layer-group"></i> Modulos</a></li>
+          </ul>
+        </li>
         <form class="d-flex">
           <a href="controller/usuarioController.php?funcion=cerrarSesion" class="nav-link active">inicio de sesion</a>
           <a href="controller/usuarioController.php?funcion=cerrarSesion" class="nav-link active">registrarse</a>
           <a href="controller/usuarioController.php?funcion=cerrarSesion" class="nav-link active"><i class="fas fa-sign-out-alt"></i>Cerrar Sesion</a>
         </form>
 
-      </div>
+      </ul>
     </div>
-  </nav>
-  <br>
+  </div>
+</nav>
 
 </body>
 
