@@ -11,7 +11,7 @@ require_once '../head.php';
 
 
   <div class="row">
-    <div class="col-12">
+    <div class="col-11,5">
       <div class="card">
         <div class="card-header">
           <h3 class="card-title">LISTA DE PRODUCTOS</h3>
@@ -19,8 +19,9 @@ require_once '../head.php';
           
         </div>
         <!-- tabla -->
-        <div class="card-body table-responsive p-0">
-          <table class="table table-hover text-nowrap">
+        <div class="card-body table-responsive p-1">
+        
+          <table class="table table-bordered">
             <thead>
               <tr>
                 <th>NOMBRE DEL PRODUCTO</th>

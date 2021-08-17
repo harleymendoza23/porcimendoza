@@ -103,9 +103,9 @@ require_once '../head.php'; ?>
 
                         <hr>
                         <h4>PESO DEL PRODUCTO</h4>
-                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                            <label class="btn btn-default text-center active">
-                                <input type="radio" autocomplete="off" checked>
+                        <div >
+                            <label >
+                               
                                 <h5> <?php echo $oproducto->tipopeso; ?></h5>
 
                                 <h4> <?php echo $oproducto->peso; ?></h4>
@@ -124,7 +124,7 @@ require_once '../head.php'; ?>
 
                         <div class="mt-4">
                            <a href="carrocompras.php" class="btn btn-primary btn-lg btn-flat"><i class="fas fa-cart-plus fa-lg mr-2"></i>
-                        carro de compras</a>
+                             agregar al carro de compras</a>
                             <!-- <div class="btn btn-primary btn-lg btn-flat" href="carrocompras.php">
                                 <i class="fas fa-cart-plus fa-lg mr-2"></i>
                                 carro de compras
