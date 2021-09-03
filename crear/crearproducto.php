@@ -4,6 +4,7 @@
  $oProducto=new producto();
  $oProducto->nombreProducto=$_POST['nombreProducto'];
  $oProducto->detalleproducto=$_POST['detalleproducto'];
+ $oProducto->descripcion=$_POST['descripcion'];
  $oProducto->peso=$_POST['peso'];
  $oProducto->precio=$_POST['precio'];
  $archivos=$_FILES["archivos"]['tmp_name'];

@@ -16,20 +16,21 @@ require_once '../head.php';
         <div class="card-header">
           <h3 class="card-title">LISTA DE PRODUCTOS</h3>
 
-          
+
         </div>
         <!-- tabla -->
         <div class="card-body table-responsive p-1">
-        
+
           <table class="table table-bordered">
             <thead>
               <tr>
                 <th>NOMBRE DEL PRODUCTO</th>
                 <th>DETALLE DEL PRODUCTO</th>
+                <th>DESCRIPCION DEL PRODUCTO</th>
                 <th>PESO DEL PRODUCTO</th>
                 <th>TIPO DE PESO</th>
                 <th>PRECIO</th>
-                <th><a  href="productos.php"><i class="fas fa-plus"></i> crear producto</a></th>
+                <th><a href="productos.php"><i class="fas fa-plus"></i> crear producto</a></th>
               </tr>
             </thead>
             <tbody>
@@ -46,19 +47,17 @@ require_once '../head.php';
                 <tr>
                   <td><?PHP echo $registro['nombreProducto'] ?></td>
                   <td><?php echo $registro['detalleproducto'] ?></td>
+                  <td><?PHP echo $registro['descripcion'] ?></td>
                   <td><?php echo $registro['peso'] ?></td>
                   <td><?php echo $registro['tipopeso'] ?></td>
                   <td><?php echo $registro['precio'] ?></td>
-
-
-
-
                   <th>
                     <a href="../productos/formularioeditar.php?id=<?php echo $registro['id']; ?>" class="btn btn-warning"><i class="fas fa-edit"></i> editar</a>
-
-                    <a data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-danger" onclick="eliminar(<?php echo $registro['id']; ?>);"><i class="fas fa-trash"></i> eliminar</a>
-
                   </th>
+                  <th>
+                    <a data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-danger" onclick="eliminar(<?php echo $registro['id']; ?>);"><i class="fas fa-trash"></i> eliminar</a>
+                  </th>
+
                 </tr>
               <?php
               }
@@ -66,9 +65,9 @@ require_once '../head.php';
             </tbody>
           </table>
         </div>
-        
+
       </div>
-      
+
     </div>
   </div>
 
@@ -101,6 +100,4 @@ require_once '../head.php';
   function eliminar(id) {
     document.getElementById('eliminar').value = id;
   }
-  </script>
-
- 
+</script>

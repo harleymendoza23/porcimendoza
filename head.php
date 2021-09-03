@@ -1,4 +1,6 @@
-<?php session_start(); ?>
+<?php session_start();
+ 
+?>
 
 <!DOCTYPE html>
 <html lang="es">
@@ -55,107 +57,18 @@
       </div>
 
       <form class="d-flex">
-        <a href="controller/usuarioController.php?funcion=cerrarSesion" class="nav-link active">inicio de sesion</a>
-        <a href="controller/usuarioController.php?funcion=cerrarSesion" class="nav-link active">registrarse</a>
+        <a href="http:/PORCIMENDOZA/carro de compras/cart.php"class="nav-link active">carro de compras</a>
+        <a href="http:/PORCIMENDOZA/login/login.php" class="nav-link active">inicio de sesion</a>
+        <a href="http:/PORCIMENDOZA/login/registro.php" class="nav-link active">registrarse</a>
         <a href="controller/usuarioController.php?funcion=cerrarSesion" class="nav-link active"><i class="fas fa-sign-out-alt"></i>Cerrar Sesion</a>
 
       </form>
-      <div class="collapse navbar-collapse" id="navbar">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="modal" data-bs-target="modal_cart" style="color: red;"><i class="fas fa-shopping-cart"></i></a>
-          </li>
-        </ul>
-      </div>
+      
     </div>
   </nav>
-  <?php
-  $carrito_mio;
-  $carrito_mio = $_SESSION['carrito'];
-  $_SESSION['carrito'] = $carrito_mio;
-
-  // contamos nuestro carrito
-  if (isset($_SESSION['carrito'])) {
-    for ($i = 0; $i <= count($carrito_mio) - 1; $i++) {
-      if ($carrito_mio[$i] != NULL) {
-        $total_cantidad = $carrito_mio['cantidad'];
-        $total_cantidad++;
-        $totalcantidad += $total_cantidad;
-      }
-    }
-  }
-  ?>
-
-
-
-  <!-- MODAL CARRITO -->
-  <div class="modal fade" id="modal_cart" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-
-
-
-          <div class="modal-body">
-            <div>
-              <div class="p-2">
-                <ul class="list-group mb-3">
-                  <?
-                  if (isset($_SESSION['carrito'])) {
-                    $total = 0;
-                    for ($i = 0; $i <= count($carrito_mio) - 1; $i++) {
-                      if ($carrito_mio[$i] != NULL) {
-                  ?>
-                        <li class="list-group-item d-flex justify-content-between lh-condensed">
-                          <div class="row col-12">
-                            <div class="col-6 p-0" style="text-align: left; color: #000000;">
-                              <h6 class="my-0">Cantidad: <?php echo $carrito_mio[$i]['cantidad'] ?> : <? echo $carrito_mio[$i]['titulo']; // echo substr($carrito_mio[$i]['titulo'],0,10); echo utf8_decode($titulomostrado)."..."; 
-                                                                                                      ?></h6>
-                            </div>
-                            <div class="col-6 p-0" style="text-align: right; color: #000000;">
-                              <span class="text-muted" style="text-align: right; color: #000000;"><? echo $carrito_mio[$i]['precio'] * $carrito_mio[$i]['cantidad'];    ?> €</span>
-                            </div>
-                          </div>
-                        </li>
-                  <?
-                        $total = $total + ($carrito_mio[$i]['precio'] * $carrito_mio[$i]['cantidad']);
-                      }
-                    }
-                  }
-                  ?>
-                  <li class="list-group-item d-flex justify-content-between">
-                    <span style="text-align: left; color: #000000;">Total (EUR)</span>
-                    <strong style="text-align: left; color: #000000;"><?php
-                                                                      if (isset($_SESSION['carrito'])) {
-                                                                        $total = 0;
-                                                                        for ($i = 0; $i <= count($carrito_mio) - 1; $i++) {
-                                                                          if ($carrito_mio[$i] != NULL) {
-                                                                            $total = $total + ($carrito_mio[$i]['precio'] * $carrito_mio[$i]['cantidad']);
-                                                                          }
-                                                                        }
-                                                                      }
-                                                                      echo $total; ?> €</strong>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-
-
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-          <a type="button" class="btn btn-primary" href="borrarcarro.php">Vaciar carrito</a>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- END MODAL CARRITO -->
+ 
+ 
+ 
 
 </body>
 

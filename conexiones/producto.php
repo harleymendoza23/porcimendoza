@@ -14,7 +14,7 @@ class producto
     public $detalleproducto = "";
     public $peso = "";
     public $precio = "";
-  
+    public $descripcion="";
     public $tipopeso = "";
 
     
@@ -24,8 +24,8 @@ class producto
         
         $oconxion = new conectar();
         $conexion = $oconxion->conexion();
-        $sql = "INSERT INTO inclusion_productos (nombreProducto,detalleproducto,peso,precio,tipopeso,eliminado) 
-        VALUES ('$this->nombreProducto','$this->detalleproducto',$this->peso,$this->precio,'$this->tipopeso',false)"; 
+        $sql = "INSERT INTO inclusion_productos (nombreProducto,detalleproducto,descripcion,peso,precio,tipopeso,eliminado) 
+        VALUES ('$this->nombreProducto','$this->detalleproducto','$this->descripcion',$this->peso,$this->precio,'$this->tipopeso',false)"; 
         
         $result = mysqli_query($conexion, $sql);
         
@@ -69,9 +69,9 @@ class producto
 
             //se consultan en los parametros
             $this->id = $registro['id'];
-            // $this->archivo = $registro['archivos'];
             $this->nombreProducto = $registro['nombreProducto'];
             $this->detalleproducto = $registro['detalleproducto'];
+            $this->descripcion = $registro['descripcion'];
             $this->peso = $registro['peso'];
             $this->precio = $registro['precio'];
             $this->tipopeso = $registro['tipopeso'];
@@ -86,6 +86,7 @@ class producto
         //consulta para actualizar el registro
         $sql="UPDATE inclusion_productos SET nombreProducto='$this->nombreProducto',
         detalleproducto='$this->detalleproducto',
+        descripcion='$this->descripcion',
         peso='$this->peso',
         tipopeso='$this->tipopeso',
         precio='$this->precio'

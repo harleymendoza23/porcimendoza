@@ -25,22 +25,11 @@ require '../head.php';
         <div class="container-fluid">
 
             <div class="row g-3">
-                <!-- codigo para subir imagenes a una pagina -->
-
-
-
-                <div class="col-md-6" style="color: #FBFCFC;">
-                    <h5 style="text-align:center">imagenes</h5>
-                    <input name="archivos[]" type="file" class="form-control" multiple accept="image/*">
-                    <br>
-                </div>
-
-
-
+             
                 <div class="col-md-6" style="color: #FBFCFC;">
                     <h5 style="text-align:center">nombre del producto</h5>
 
-                    <input class="form-control" placeholder="por ejemplo:cerdos" required minlength="10" maxlength="20" type="text" name="nombreProducto">
+                    <input class="form-control" placeholder="por ejemplo:cerdos" required minlength="5" maxlength="20" type="text" name="nombreProducto">
                 </div>
 
                 <div class="col-md-6" style="color: #FBFCFC;">
@@ -49,12 +38,17 @@ require '../head.php';
                         <textarea class="form-control" name="detalleproducto" id="floatingTextarea2"></textarea>
                     </div>
                 </div>
+                <div class="col-md-6" style="color: #FBFCFC;">
+                    <h5 style="text-align:center">descripcion del producto</h5>
+
+                    <input class="form-control" placeholder="por ejemplo:raza doble jamon" required minlength="5" maxlength="20" type="text" name="descripcion">
+                </div>
 
 
                 <div class="col-md-6" style="color: #FBFCFC;">
                     <h5 style="text-align:center">peso del producto</h5>
 
-                    <input class="form-control" placeholder="por ejemplo:12" min="5" max="40" required type="number" name="peso">
+                    <input class="form-control" placeholder="por ejemplo:12" min="1" max="500" required type="number" name="peso">
                 </div>
 
                 <div class="col-md-6" style="color: #FBFCFC;">
@@ -75,7 +69,12 @@ require '../head.php';
 
                     <input name="precio" placeholder="por ejemplo:$50.000" minlength="5" maxlength="40" required type="text" id="separador" class="form-control">
                 </div>
-
+                   <!-- codigo para subir imagenes a una pagina -->
+                <div class="col-md-6" style="color: #FBFCFC;">
+                    <h5 style="text-align:center">imagenes</h5>
+                    <input name="archivos[]" type="file" class="form-control" multiple accept="image/*">
+                    <br>
+                </div>
 
 
                 <center>
