@@ -24,9 +24,27 @@ switch ($funcion) {
     case "editarproducto";
         $oUsuario->editarproducto();
         break;
+        // case "registrarUsuarioEnRol":
+        //     $oUsuario->registrarUsuarioPorRol();
+        //     break;
     case "cerrarSesion":
         $oUsuario->cerrarSesion();
         break;
+    case "editarmodulo":
+        $oUsuario->editarmodulo();
+        break;
+    case "nuevapagina":
+        $oUsuario->nuevapagina();
+        break;
+    case "editarpagina":
+        $oUsuario->actualizarPagina();
+        break;
+        case "nuevorol":
+            $oUsuario->nuevoRol();
+            break;
+            case "editarrol":
+                $oUsuario->actualizarRol();
+                break;
 }
 
 
@@ -40,7 +58,7 @@ class usuarioController
     {
         require_once '../conexiones/usuario.php';
         $oUser = new usuario();
-        $nombre = $_POST['nombre'];
+        $nombre_usuario = $_POST['nombre_usuario'];
         $correo = $_POST['correo'];
         $contrasena = $_POST['contrasena'];
         $confirmContrasena = $_POST['confirmContrasena'];
@@ -48,7 +66,7 @@ class usuarioController
             //si son iguales las contraseña y confirma contraseña se va a generar el registro
             if ($oUser->consultarCorreoElectronico($correo) == 0) {
                 //se registra al usuario
-                $result = $oUser->registroUsuario($nombre, $correo, $contrasena);
+                $result = $oUser->registroUsuario($nombre_usuario, $correo, $contrasena);
                 if ($result) {
                     header("location:../index.php");
                 } else {
@@ -76,14 +94,29 @@ class usuarioController
         $contrasena = $_POST['contrasena'];
         $oUser->iniciarSesion($correo, $contrasena);
         if ($oUser->getIdUser() != "") {
-            $_SESSION['id'] = $oUser->getIdUser();
-            $_SESSION['nombre'] = $oUser->getNombreUser();
+            $_SESSION['id_usuario'] = $oUser->getIdUser();
+            $_SESSION['nombre_usuario'] = $oUser->getNombreUser();
             header("location:../index.php");
         } else {
             echo "usuario o contraseña incorrecta";
         }
     }
+    // public function registrarUsuarioPorRol()
+    // {
 
+    //     $idRol = $_GET['idRol'];
+    //     $idUser = $_GET['idUser'];
+
+    //     require_once '../usuario.php';
+
+    //     $oUsuario = new usuario();
+    //     $result = $oUsuario->actualizarUsuarioDeRol($idRol, $idUser);
+    //     if ($result) {
+    //         header("location: ../detallerol.php?idRol=$idRol");
+    //     } else {
+    //         echo "Error al registrar el usuario";
+    //     }
+    // }
 
     public function cerrarSesion()
     {
@@ -149,5 +182,81 @@ class usuarioController
         } else {
             echo "error al actualizar el producto";
         }
+    }
+    public function editarmodulo()
+    {
+        require_once '../conexiones/modulo.php';
+        require_once '../conexiones/conexion.php';
+        //se instancia el objeto modulo
+        $omodulo = new modulo();
+        $omodulo->id_modulo = $_GET['id_modulo'];
+        $omodulo->nombre_modulo = $_GET['nombre_modulo'];
+
+        $result = $omodulo->actualizarmodulo();
+        if ($result) {
+            header("Location: ../administrador/modulo.php");
+        } else {
+            echo "error al actualizar el modulo";
+        }
+    }
+    public function nuevapagina()
+    {
+
+        require_once '../conexiones/pagina.php';
+        require_once '../conexiones/conexion.php';
+        $opagina = new pagina();
+        $opagina->id_modulo = $_GET['id_modulo'];
+        $opagina->nombre_pagina = $_GET['nombre_pagina'];
+        $opagina->enlace = $_GET['enlace'];
+
+        $result = $opagina->nuevoPagina();
+        if ($result) {
+            header("Location: ../administrador/detallemodulo.php?id_modulo=$opagina->id_modulo");
+        } else {
+            echo "error al registrar la pagina";
+        }
+    }
+    public function actualizarPagina()
+    {
+        require_once '../conexiones/conexion.php';
+        require_once '../conexiones/pagina.php';
+        $opagina = new pagina();
+        $opagina->id_pagina = $_GET['id_pagina'];
+        $opagina->nombre_pagina = $_GET['nombre_pagina'];
+        $opagina->enlace = $_GET['enlace'];
+
+        $result = $opagina->actualizarPagina();
+        if ($result) {
+            header("Location: ../administrador/detallemodulo.php?id_modulo=" . $_GET['id_modulo']);
+        } else {
+            echo "error al actualizar la pagina";
+        }
+    }
+    public function nuevoRol(){
+        require_once '../conexiones/conexion.php';
+        require_once '../conexiones/rol.php';
+        $orol=new rol();
+        $orol->nombre_rol=$_GET['nombre_rol'];
+        $result= $orol->nuevoRol();
+        if($result){
+            header("location:../administrador/listarrol.php");
+        }else{
+            echo "error al crear el rol";
+        }
+    }
+    public function actualizarRol(){
+        require_once '../conexiones/conexion.php';
+        require_once '../conexiones/rol.php';
+        $orol = new rol();
+        $orol->id_pagina = $_GET['id_pagina'];
+        $orol->nombre_pagina = $_GET['nombre_pagina'];
+        $orol->enlace = $_GET['enlace'];
+        $result = $orol->actualizarRol();
+        if ($result) {
+            // header("Location: ../administrador/listarrol.php?");
+            
+        } else {
+            echo "error al actualizar la pagina";
+        } 
     }
 }

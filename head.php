@@ -1,5 +1,5 @@
 <?php session_start();
- 
+
 ?>
 
 <!DOCTYPE html>
@@ -50,25 +50,90 @@
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
               <li><a href="http:/PORCIMENDOZA/productos/productoslista.php" class="nav-link active" aria-current="page"><i class="fas fa-user-tag"></i> lista de productos</a></li>
-              <li><a href="http:/NOTASESTUDIANTE/listarmodulo.php" class="nav-link active" aria-current="page"><i class="fas fa-layer-group"></i> Modulos</a></li>
+              <li><a href="http:/PORCIMENDOZA/productos/listausuario.php" class="nav-link active" aria-current="page"><i class="fas fa-layer-group"></i>lista de usuarios </a></li>
+              <li><a href="http:/PORCIMENDOZA/administrador/modulo.php" class="nav-link active" aria-current="page"><i class="fas fa-layer-group"></i>lista de modulos </a></li>
+              <li><a href="http:/PORCIMENDOZA/administrador/listarrol.php" class="nav-link active" aria-current="page"><i class="fas fa-layer-group"></i>lista de roles </a></li>
             </ul>
           </li>
         </ul>
       </div>
 
       <form class="d-flex">
-        <a href="http:/PORCIMENDOZA/carro de compras/cart.php"class="nav-link active">carro de compras</a>
+
+        <?php
+        if (isset($_SESSION['id_usuario'])) {
+        ?>
+          <a href="http:/PORCIMENDOZA/carro de compras/cart.php" class="nav-link active">carro de compras</a>
+          <a href="controller/usuarioController.php?funcion=cerrarSesion" class="nav-link active"><i class="fas fa-sign-out-alt"></i>Cerrar Sesion</a>
+        <?php
+        }else{
+        ?>
         <a href="http:/PORCIMENDOZA/login/login.php" class="nav-link active">inicio de sesion</a>
         <a href="http:/PORCIMENDOZA/login/registro.php" class="nav-link active">registrarse</a>
-        <a href="controller/usuarioController.php?funcion=cerrarSesion" class="nav-link active"><i class="fas fa-sign-out-alt"></i>Cerrar Sesion</a>
 
+        <?php
+        }
+        date_default_timezone_set('America/Bogota');
+        $fechaActual = Date("Y-m-d");
+
+        ?>
+        <p><?php echo $fechaActual; ?></p>
       </form>
-      
+      <div id="relojnumerico" class="reloj" onload="cargarReloj()" style="color: #080808;font-size: 20px;font-family: 'Times New Roman', Times, serif;color:black;letter-spacing: 5px;text-align: center;"></div>
+      <script>
+        function cargarReloj() {
+
+          // Haciendo uso del objeto Date() obtenemos la hora, minuto y segundo 
+          var fechahora = new Date();
+          var hora = fechahora.getHours();
+          var minuto = fechahora.getMinutes();
+          var segundo = fechahora.getSeconds();
+
+          // Variable meridiano con el valor 'AM' 
+          var meridiano = "AM";
+
+
+          // Si la hora es igual a 0, declaramos la hora con el valor 12 
+          if (hora == 0) {
+
+            hora = 12;
+
+          }
+
+          // Si la hora es mayor a 12, restamos la hora - 12 y mostramos la variable meridiano con el valor 'PM' 
+          if (hora > 12) {
+
+            hora = hora - 12;
+
+            // Variable meridiano con el valor 'PM' 
+            meridiano = "PM";
+
+          }
+
+          // Formateamos los ceros '0' del reloj 
+          hora = (hora < 10) ? "0" + hora : hora;
+          minuto = (minuto < 10) ? "0" + minuto : minuto;
+          segundo = (segundo < 10) ? "0" + segundo : segundo;
+
+          // Enviamos la hora a la vista HTML 
+          var tiempo = hora + ":" + minuto + ":" + segundo + " " + meridiano;
+          document.getElementById("relojnumerico").innerText = tiempo;
+          document.getElementById("relojnumerico").textContent = tiempo;
+
+          // Cargamos el reloj a los 500 milisegundos 
+          setTimeout(cargarReloj, 500);
+
+        }
+
+        // Ejecutamos la función 'CargarReloj' 
+        cargarReloj();
+      </script>
+
     </div>
   </nav>
- 
- 
- 
+
+
+
 
 </body>
 

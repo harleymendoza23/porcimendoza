@@ -15,7 +15,7 @@
 
                     <!-- whatsapp -->
 
-                    <a href="https://api.whatsapp.com/send?phone=3163213463" target="_blank"> <img src="/PORCIMENDOZA/img/whassapp.png" width="45" height="45"> </a>
+                    <a href="https://api.whatsapp.com/send?phone=573163213463" target="_blank"> <img src="/PORCIMENDOZA/img/whassapp.png" width="45" height="45"> </a>
 
 
                     <!-- facebook -->
