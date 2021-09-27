@@ -29,6 +29,20 @@
   <link rel="stylesheet" href="/porcimendoza/assets/dist/css/adminlte.min.css">
 
 
+
+  <link href="/porcimendoza/assets/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+  <link href="/porcimendoza/assets/css/all.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="/porcimendoza/assets/css/ionicons.min.css">
+  <link rel="stylesheet" href="/porcimendoza/assets/css/css-font.css">
+  <link rel="stylesheet" href="/porcimendoza/assets/plugins/fontawesome-free/css/all.min.css">
+
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+
+
+
+
+
   <title>porcimendoza</title>
 </head>
 
@@ -66,13 +80,18 @@
           <a href="http:/PORCIMENDOZA/carro de compras/cart.php" class="nav-link active">carro de compras</a>
           <a href="controller/usuarioController.php?funcion=cerrarSesion" class="nav-link active"><i class="fas fa-sign-out-alt"></i>Cerrar Sesion</a>
         <?php
-        }else{
+        } else {
         ?>
-        <a href="http:/PORCIMENDOZA/login/login.php" class="nav-link active">inicio de sesion</a>
-        <a href="http:/PORCIMENDOZA/login/registro.php" class="nav-link active">registrarse</a>
+          <a href="http:/PORCIMENDOZA/login/login.php" class="nav-link active">inicio de sesion</a>
+          <a href="http:/PORCIMENDOZA/login/registro.php" class="nav-link active">registrarse</a>
 
         <?php
         }
+        ?>
+        <style>
+          /* estoy trabajando  */
+        </style>
+        <?php
         date_default_timezone_set('America/Bogota');
         $fechaActual = Date("Y-m-d");
 

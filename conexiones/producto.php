@@ -44,17 +44,38 @@ class producto
     }
 
 
-    function listarproducto()
+    function listarproducto($pagina)
     {
         $oconexion = new conectar();
         $conexion = $oconexion->conexion();
-        $sql = "SELECT * FROM inclusion_productos  WHERE eliminado=false";
+         //consulta de paginacion
+        $sql = "SELECT count(id) as numeroregistro FROM inclusion_productos  WHERE eliminado=false";
+        $result=mysqli_query($conexion,$sql);
+        foreach($result as $registro){
+            $this->numeroregistro=$registro['numeroregistro'];
+        }
+
+        $inicio=(($pagina-1)*6);
+
+        $sql = "SELECT * FROM inclusion_productos  WHERE eliminado=false limit 6 OFFSET $inicio";
         //serive para ejecutar la funcion
         $result=mysqli_query($conexion,$sql);
         //organiza el resultado de la consola y lo retorno
         $result=mysqli_fetch_all($result, MYSQLI_ASSOC);
 
         return $result;
+    }
+
+    function listarproductodetalle(){
+        $oconexion = new conectar();
+        $conexion = $oconexion->conexion(); 
+        $sql = "SELECT * FROM inclusion_productos  WHERE eliminado=false";
+        //serive para ejecutar la funcion
+        $result=mysqli_query($conexion,$sql);
+        //organiza el resultado de la consola y lo retorno
+        $result=mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+        return $result; 
     }
 
 
@@ -109,5 +130,26 @@ class producto
         $result=mysqli_query($conexion,$sql);
         return $result;
       }
+
+      function consultar_para_detalle(){
+        $oconexion = new conectar();
+        $conexion = $oconexion->conexion();
+        $sql = "SELECT * FROM inclusion_productos ip WHERE ip.id<>$this->id and ip.eliminado=false";
+        $result = mysqli_query($conexion, $sql);
+        $result = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        foreach ($result as $registro) {
+
+            //se consultan en los parametros
+            $this->id = $registro['id'];
+            $this->nombreProducto = $registro['nombreProducto'];
+            $this->detalleproducto = $registro['detalleproducto'];
+            $this->descripcion = $registro['descripcion'];
+            $this->peso = $registro['peso'];
+            $this->precio = $registro['precio'];
+            $this->tipopeso = $registro['tipopeso'];
+        }
+      }
+    
+
+
 }
-?>

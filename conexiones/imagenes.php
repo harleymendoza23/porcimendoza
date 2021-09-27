@@ -31,4 +31,14 @@ class imagenes
         return $result;
     
     }
+    function consultarimagen_publicidad()
+    {
+        $oconxion = new conectar();
+        $conexion = $oconxion->conexion();
+        $sql = "SELECT * FROM imagenes WHERE idproducto<>$this->idproducto";
+        $result = mysqli_query($conexion, $sql);
+        $result = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        return $result;
+    
+    }
 }

@@ -1,5 +1,5 @@
 <?php
-
+// echo json_encode("hola mundo");
 //esta función almacena que operación quiere el usuario
 $funcion = ""; //Me permite verificar su la variable esta vacia
 //El if diferenciar metodo POST o GET o ninguno. AL CONTROLER SE LE HA ESTADO ENVIANDO GET O POST
@@ -39,12 +39,18 @@ switch ($funcion) {
     case "editarpagina":
         $oUsuario->actualizarPagina();
         break;
-        case "nuevorol":
-            $oUsuario->nuevoRol();
-            break;
-            case "editarrol":
-                $oUsuario->actualizarRol();
-                break;
+    case "nuevorol":
+        $oUsuario->nuevoRol();
+        break;
+    case "editarrol":
+        $oUsuario->actualizarRol();
+        break;
+    case "filtrar_usuario":
+        $oUsuario->filtrar_usuario();
+        break;
+    case "registrarUsuarioEnRol":
+        $oUsuario->registrarUsuarioEnRol();
+        break;
 }
 
 
@@ -232,31 +238,58 @@ class usuarioController
             echo "error al actualizar la pagina";
         }
     }
-    public function nuevoRol(){
-        require_once '../conexiones/conexion.php';
-        require_once '../conexiones/rol.php';
-        $orol=new rol();
-        $orol->nombre_rol=$_GET['nombre_rol'];
-        $result= $orol->nuevoRol();
-        if($result){
-            header("location:../administrador/listarrol.php");
-        }else{
-            echo "error al crear el rol";
-        }
-    }
-    public function actualizarRol(){
+    public function nuevoRol()
+    {
         require_once '../conexiones/conexion.php';
         require_once '../conexiones/rol.php';
         $orol = new rol();
-        $orol->id_pagina = $_GET['id_pagina'];
-        $orol->nombre_pagina = $_GET['nombre_pagina'];
-        $orol->enlace = $_GET['enlace'];
+        $orol->nombre_rol = $_GET['nombre_rol'];
+        $result = $orol->nuevoRol();
+        if ($result) {
+            header("location:../administrador/listarrol.php");
+        } else {
+            echo "error al crear el rol";
+        }
+    }
+    public function actualizarRol()
+    {
+        require_once '../conexiones/conexion.php';
+        require_once '../conexiones/rol.php';
+        $orol = new rol();
+        $orol->id_rol = $_GET['id_rol'];
+        $orol->nombre_rol = $_GET['nombre_rol'];
+
         $result = $orol->actualizarRol();
         if ($result) {
-            // header("Location: ../administrador/listarrol.php?");
-            
+             header("Location: ../administrador/listarrol.php?");
+
         } else {
             echo "error al actualizar la pagina";
-        } 
+        }
+    }
+    public function filtrar_usuario()
+    {
+        require_once '../conexiones/usuario.php';
+        $ousuario = new usuario();
+        // $result=$ousuario->listarusuario($_GET['filtrousuario']); se llama la funcion del java
+        $result = $ousuario->listarusuario($_GET['filtrousuario']);
+        echo json_encode($result);
+    }
+
+    public function registrarUsuarioEnRol()
+    {
+
+        $id_rol = $_GET['id_rol'];
+        $id_usuario = $_GET['id_usuario'];
+
+        require_once '../conexiones/usuario.php';
+
+        $oUsuario = new usuario();
+        $result = $oUsuario->actualizarUsuarioDeRol($id_rol, $id_usuario);
+        if ($result) {
+            header("location: ../administrador/detallerol.php?id_rol=$id_rol");
+        } else {
+            echo "Error al registrar el usuario";
+        }
     }
 }

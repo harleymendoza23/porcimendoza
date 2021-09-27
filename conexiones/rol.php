@@ -108,4 +108,5 @@ class rol
         $result = mysqli_query($conexion, $sql);
         return $result;
     }
+    
 }

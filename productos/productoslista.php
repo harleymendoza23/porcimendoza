@@ -19,10 +19,10 @@ require_once '../head.php';
 
         </div>
         <!-- tabla -->
-        <div class="card-body table-responsive p-1">
+        <div class="card-body table-responsive p-2">
 
           <table class="table table-bordered">
-            <thead>
+            <thead class="table-light">
               <tr>
                 <th>NOMBRE DEL PRODUCTO</th>
                 <th>DETALLE DEL PRODUCTO</th>
@@ -40,7 +40,7 @@ require_once '../head.php';
               $oconexion = new conectar();
               $oconexion = $oconexion->conexion();
               $oproducto = new producto();
-              $consulta = $oproducto->listarproducto();
+              $consulta = $oproducto->listarproductodetalle();
               foreach ($consulta as $registro) {
 
               ?>

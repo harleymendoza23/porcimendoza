@@ -72,11 +72,13 @@ require '../head.php';
                    <!-- codigo para subir imagenes a una pagina -->
                 <div class="col-md-6" style="color: #FBFCFC;">
                     <h5 style="text-align:center">imagenes</h5>
-                    <input name="archivos[]" type="file" class="form-control" multiple accept="image/*">
+                    <input name="archivos[]" type="file" class="form-control" multiple accept="image/*" onchange="agregar_archivos(event)">
                     <br>
                 </div>
-
-
+                <div id="container-image" class="row">
+                <!-- aqui van aparecer las imagenes  -->
+             
+            </div>
                 <center>
                     <div class="col-md-6">
                         <input type="submit" value="guardar" class="btn btn-info" onclick="datos()">
@@ -87,17 +89,7 @@ require '../head.php';
 
 
     </form>
-
-
-
-
-
-
-
-
 </body>
-
-
 
 </html>
 <script>
@@ -126,3 +118,35 @@ require '../head.php';
         }
     }, false);
 </script>
+<script>
+        function agregar_archivos(evento) {
+            var archivos = evento.currentTarget.files;
+            console.log(archivos);
+            // la variable archivo va a guardar todo lo que este en archivos para recorrer y crear una tarjeta por cada imagens 
+            var contenedor = document.getElementById('container-image');
+            contenedor.innerHTML="";
+            for (var archivo of archivos) {
+                var tarjeta = document.createElement('div');
+                tarjeta.className = "col col-3 card";
+                // tarjeta.setAttribute("style", "width:10rem");
+                var imagen = document.createElement('img');
+                imagen.className = "card-img-top";
+                // imagen.src=URL.createObjectURL(archivo); permite que la URL guarda los archivos que esta en la variable de archivo 
+                imagen.src = URL.createObjectURL(archivo);
+                imagen.setAttribute("style", "width:100%; height:auto");
+                var cuerpo = document.createElement('div');
+                cuerpo.className = "card-body";
+                var botoneliminar = document.createElement('a');
+                botoneliminar.className = "btn btn-outline-danger";
+                botoneliminar.addEventListener('click', function() {
+                    eliminar(this.value);
+                });
+                botoneliminar.innerHTML = '<img src="icons8-eliminar.gif" width="40px" />'
+                tarjeta.appendChild(imagen);
+                cuerpo.appendChild(botoneliminar);
+                tarjeta.appendChild(cuerpo);
+                contenedor.appendChild(tarjeta);
+            }
+
+        }
+    </script>

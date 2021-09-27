@@ -65,7 +65,7 @@ $omodulo->consultarmodulo();
                         <td><?php echo $registro['nombre_pagina']; ?></td>
                         <td><?php echo $registro['enlace']; ?></td>
                         <td>
-                            <a href="http://localhost/porcimendoza/administrador/formularioeditarpagina.php?id_pagina=<?php echo $registro['id_pagina']; ?>" class="btn btn-warning"><i class="fas fa-user-edit"></i> Editar</a>
+                            <a href="/porcimendoza/administrador/formularioeditarpagina.php?id_pagina=<?php echo $registro['id_pagina']; ?>" class="btn btn-warning"><i class="fas fa-user-edit"></i> Editar</a>
                             <a class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="eliminar(<?php echo $registro['id_pagina']; ?>, <?php echo $registro['id_modulo']; ?>)"><i class="fas fa-trash-alt"></i> Eliminar</a>
                         </td>
                     </tr>
@@ -74,7 +74,7 @@ $omodulo->consultarmodulo();
                 ?>
             </tbody>
         </table>
-        <a href="http://localhost/PORCIMENDOZA/administrador/modulo.php" class="btn btn-dark"> <i class="fas fa-arrow-circle-left"></i> Atras</a>
+        <a href="/PORCIMENDOZA/administrador/modulo.php" class="btn btn-dark"> <i class="fas fa-arrow-circle-left"></i> Atras</a>
     </div>
 </body>
 

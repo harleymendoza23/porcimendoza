@@ -3,13 +3,18 @@ require_once '../head.php';
 require_once '../conexiones/usuario.php';
 require_once '../conexiones/conexion.php';
 ?>
-<table class="table">
-    <thead>
+<div class="table responsive "></div>
+<table class="table align-middle">
+    <thead class="table-dark">
         <tr>
             <th>
-                <center>
                     <h2>usuario</h2>
-                </center>
+            </th>
+            <th>
+                <label for="">Busqueda:</label>
+                <!-- se crea el imput para la busqueda de usuarios  -->
+                <input type="text" name="busqueda_usuario" id="busqueda_usuario" onkeyup="buscaruaurio()">
+                <!-- onkeyup="buscaruaurio() se utiliza para que se ejecute cuando ele usuario oprime una tecla -->
             </th>
         </tr>
     </thead>
@@ -19,28 +24,10 @@ require_once '../conexiones/conexion.php';
         <th><a class="btn btn-info" href="../usuario/agregar_usuario.php"><i class="fas fa-plus"></i> nuevo</a> </th>
     </tr>
     </thead>
-
-    <body>
-        <div class="container">
-            <?php
-            $oconexion = new conectar();
-            $oconexion = $oconexion->conexion();
-            $ousuario = new usuario();
-            $consulta = $ousuario->listarusuario();
-            foreach ($consulta as $registro) {
-            ?>
-                <tr class="table-primary">
-                    <td><?php echo $registro['nombre_usuario']; ?> </td>
-                    <td><?php echo $registro['correo']; ?> </td>
-                    <th>
-                        <a href="/porcimendoza/usuario/formularioeditarusuario.php?id_usuario=<?php echo $registro['id_usuario']; ?>" class="btn btn-warning"><i class="fas fa-edit"></i> editar</a>
-                        <a data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-danger" onclick="eliminar(<?php echo $registro['id_usuario']; ?>);"><i class="fas fa-trash"></i> eliminar</a>
-                    </th>
-                </tr>
-            <?php
-
-            }
-            ?>
+    <!-- se crea la tabla la cual se va a crear en javascrip  -->
+    <tbody id="busqueda">
+       
+    </tbody>
 </table>
 </html>
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -67,4 +54,8 @@ require_once '../conexiones/conexion.php';
     function eliminar(id_usuario) {
         document.getElementById('eliminar').value = id_usuario;
     }
+</script>
+<!-- se importa el javascrip -->
+<script src="../assets/busqueda.js">
+    
 </script>

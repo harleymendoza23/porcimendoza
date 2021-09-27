@@ -26,7 +26,7 @@ $consulta = $oPagina->ListarPagina();
                     <!-- <input type="submit" class="btn btn-info" value="Guardar" onclick="datos()"> -->
                     <button type="submit" class="btn btn-success" name="funcion" value="nuevapagina"><i class="far fa-save"></i> Guardar</button>
                 </div><br>
-                <a href="http://localhost/PORCIMENDOZA/administrador/detallemodulo.php?id_modulo=<?php echo $_GET['id_modulo']; ?>" class="btn btn-dark"><i class="fas fa-arrow-circle-left"></i> Volver</a>
+                <a href="/PORCIMENDOZA/administrador/detallemodulo.php?id_modulo=<?php echo $_GET['id_modulo']; ?>" class="btn btn-dark"><i class="fas fa-arrow-circle-left"></i> Volver</a>
                 <a href="../index.php" class="btn btn-outline-info">Página principal</a>
             </form>
         </div>

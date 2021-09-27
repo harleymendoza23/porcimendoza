@@ -32,7 +32,7 @@ $registro = $orol->consultarrol($_GET['id_rol']);
                 <!-- <input type="submit" class="btn btn-info" value="Guardar" onclick="datos()"> -->
                 <button type="submit" class="btn btn-success" name="funcion" value="editarrol"><i class="far fa-save"></i> Guardar</button>
             </div><br>
-            <a href="http://localhost/PORCIMENDOZA/administrador/listarrol.php" class="btn btn-dark"><i class="fas fa-arrow-circle-left"></i> Volver</a>
+            <a href="/PORCIMENDOZA/administrador/listarrol.php" class="btn btn-dark"><i class="fas fa-arrow-circle-left"></i> Volver</a>
             <a href="../index.php" class="btn btn-outline-info">Página principal</a>
         </div>
     </form>

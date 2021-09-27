@@ -12,6 +12,7 @@ class usuario
     private $correo = "";
     private $nombre = "";
     private $contrasena = "";
+    private $id_rol="";
 
     //para obtener la información de Id
     public function getIdUser()
@@ -34,7 +35,12 @@ class usuario
     {
         $this->nombre = $nombre_usuario;
     }
-
+    public function getid_rol(){
+        return $this->id_rol;
+    }
+    public function setid_rol($id_rol){
+        $this->id_rol=$id_rol;
+    }
     //función que gestiona el registro de los usuario
     //las variables dentro de los parentesis son parametros que se requieren dar al momento de llamar la función
     public function registroUsuario($nombre_usuario, $correo, $contrasena)
@@ -86,11 +92,15 @@ class usuario
         }
         return count($result);
     }
-    function listarusuario()
+    function listarusuario($filtrousuario)
     {
         $oconexion = new conectar();
         $conexion = $oconexion->conexion();
-        $sql = "SELECT * FROM usuario WHERE eliminado=false";
+        if ($filtrousuario != "") {
+            $sql = "SELECT * FROM usuario WHERE eliminado=false and (nombre_usuario like '%$filtrousuario%' or correo like '%$filtrousuario%')";
+        } else {
+            $sql = "SELECT * FROM usuario WHERE eliminado=false";
+        }
         //serive para ejecutar la funcion
         $result = mysqli_query($conexion, $sql);
         //organiza el resultado de la consola y lo retorno
@@ -112,17 +122,17 @@ class usuario
         $result = mysqli_query($conexion, $sql);
         return $result;
     }
-    // function actualizarUsuarioDeRol($idRol, $idUser){
-    //     //Instancia clase conectar
-    //     $oConexion=new conectar();
-    //     //Establece conexion con la base de datos.
-    //     $conexion=$oConexion->conexion();
+    function actualizarUsuarioDeRol($id_rol, $id_usuario){
+        //Instancia clase conectar
+        $oConexion=new conectar();
+        //Establece conexion con la base de datos.
+        $conexion=$oConexion->conexion();
 
-    //     $sql="UPDATE usuario SET idRol=$idRol WHERE idUser=$idUser";
-    //     //se ejecuta la consulta
-    //     $result=mysqli_query($conexion,$sql);
-    //     return $result;
-    // }
+        $sql="UPDATE usuario SET id_rol=$id_rol WHERE id_usuario=$id_usuario";
+        //se ejecuta la consulta
+        $result=mysqli_query($conexion,$sql);
+        return $result;
+    }
     function consultarusuario($id_usuario)
     {
         $oconexion = new conectar();
@@ -151,4 +161,28 @@ class usuario
         $result = mysqli_query($conexion, $sql);
         return $result;
     }
+    function listarusuarioporrol($id_rol){
+        $oconexion=new conectar();
+        $conexion=$oconexion->conexion();
+        $sql = "SELECT * FROM usuario WHERE id_rol=$id_rol and  eliminado=false";
+        //serive para ejecutar la funcion
+        $result=mysqli_query($conexion,$sql);
+        //organiza el resultado de la consola y lo retorno
+        return mysqli_fetch_all($result, MYSQLI_ASSOC);
+        
+    }
+    function mostrarUsuariosPorIdDiferente($id_rol){
+        //Instancia clase conectar
+        $oConexion=new conectar();
+        //Establece conexion con la base de datos.
+        $conexion=$oConexion->conexion();
+        
+        //esta consulta nos permite conocer a los usuarios que no estan registrados en ese tol
+        $sql="SELECT * FROM usuario WHERE id_rol IS NULL OR id_rol!=$id_rol AND eliminado=false";
+            
+        //se ejecuta la consulta en la base de datos
+        $result=mysqli_query($conexion,$sql);
+        //organiza resultado de la consulta y lo retorna
+        return mysqli_fetch_all($result, MYSQLI_ASSOC); 
+        }
 }
