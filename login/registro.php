@@ -22,7 +22,7 @@
         </p>
       <form action="../controller/usuarioController.php" method="post">
       <div class="input-group mb-3">
-          <input type="text" class="form-control" name="nombre" placeholder="nombre" required>
+          <input type="text" class="form-control" name="nombre_usuario" placeholder="nombre" required>
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-address-card"></span>

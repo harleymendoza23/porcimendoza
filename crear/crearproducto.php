@@ -6,7 +6,9 @@
  $oProducto->detalleproducto=$_POST['detalleproducto'];
  $oProducto->descripcion=$_POST['descripcion'];
  $oProducto->peso=$_POST['peso'];
- $oProducto->precio=$_POST['precio'];
+//  $oProducto->precio=$_POST['precio'];
+echo $_POST['precio'];
+ $oProducto->precio=str_replace(".","",$_POST['precio']);
  $archivos=$_FILES["archivos"]['tmp_name'];
  $oProducto->tipopeso=$_POST['tipopeso'];
  $result=$oProducto->nuevoproducto();

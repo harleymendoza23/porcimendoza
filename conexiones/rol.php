@@ -58,6 +58,22 @@ class rol
     // //organiza resultado de la consulta y lo retorna
     // return mysqli_fetch_all($result, MYSQLI_ASSOC);
     // }
+    function consultarrolpermiso(){
+        $oconexion=new conectar();
+         $conexion =$oconexion->conexion();
+         $sql = "SELECT r.id_rol, r.nombre_rol FROM rol r WHERE id_rol=$this->id_rol and eliminado=false";
+         $result=mysqli_query($conexion,$sql);
+         $result=mysqli_fetch_all($result, MYSQLI_ASSOC);
+         foreach($result as $registro) {
+          
+            //se consultan en los parametros
+            $this->id_rol=$registro['id_rol'];
+            $this->nombre_rol=$registro['nombre_rol'];
+           
+            
+          
+          }
+        }
 
     function consultarRol($id_rol)
     {

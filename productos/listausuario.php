@@ -6,7 +6,7 @@ require_once '../conexiones/conexion.php';
 <div class="table responsive "></div>
 <table class="table align-middle">
     <thead class="table-dark">
-        <tr>
+        <tr> 
             <th>
                     <h2>usuario</h2>
             </th>

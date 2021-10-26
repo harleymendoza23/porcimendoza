@@ -24,7 +24,7 @@ $registro = $orol->consultarrol($_GET['id_rol']);
             <th>Correo electronico</th>
             <!-- estos son los iconos<i class="fas fa-plus"></i> -->
             <th><a href="/porcimendoza/administrador/nuevousuario.php?id_rol=<?php echo $_GET['id_rol']; ?>" class="btn btn-info"><i class="fas fa-search-plus"></i> Agregar usuario</a></th>
-            <th><a href="/porcimendoza/administrador/darpermiso.php?id_rol=<?php echo $_GET['id_rol']; ?>" class="btn btn-info"><i class="fas fa-search-plus"></i> permisos</a></th>
+            <th><a href="/porcimendoza/administrador/permiso.php?id_rol=<?php echo $_GET['id_rol']; ?>" class="btn btn-info"><i class="fas fa-search-plus"></i> permisos</a></th>
         </tr>
         </thead>
 

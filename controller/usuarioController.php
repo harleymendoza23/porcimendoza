@@ -51,6 +51,9 @@ switch ($funcion) {
     case "registrarUsuarioEnRol":
         $oUsuario->registrarUsuarioEnRol();
         break;
+    case "actualizar_usuario":
+        $oUsuario->actualizar_usuario();
+        break;
 }
 
 
@@ -74,7 +77,7 @@ class usuarioController
                 //se registra al usuario
                 $result = $oUser->registroUsuario($nombre_usuario, $correo, $contrasena);
                 if ($result) {
-                    header("location:../index.php");
+                    // header("location:../index.php");
                 } else {
                     echo "error al momento de registrar el usuario";
                 }
@@ -261,8 +264,8 @@ class usuarioController
 
         $result = $orol->actualizarRol();
         if ($result) {
-             header("Location: ../administrador/listarrol.php?");
-
+            
+            header("Location: ../administrador/listarrol.php?titulo_mensaje=bien&cuerpo_mensaje=Se+ha+actulaizado+la+informacion&tipo_mensaje=success");
         } else {
             echo "error al actualizar la pagina";
         }
@@ -290,6 +293,22 @@ class usuarioController
             header("location: ../administrador/detallerol.php?id_rol=$id_rol");
         } else {
             echo "Error al registrar el usuario";
+        }
+    }
+    public function actualizar_usuario()
+    {
+        require_once '../conexiones/usuario.php';
+        $id_usuario=$_GET['id_usuario'];
+        $oUsuario = new usuario();
+        $oUsuario->nombre_usuario = $_GET['nombre_usuario'];
+        $oUsuario->setcorreo($_GET['correo']);
+        $oUsuario->setdireccion($_GET['direccion']);
+        $result = $oUsuario->actualizarusuario($id_usuario);
+
+        if ($result) {
+            header("Location: ../login/perfil.php?titulo_mensaje=bien&cuerpo_mensaje=Se+ha+actualizado+la+información+correctamente&tipo_mensaje=success" );
+        } else {
+            echo "error al actualizar la pagina";
         }
     }
 }

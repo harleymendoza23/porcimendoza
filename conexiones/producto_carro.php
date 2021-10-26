@@ -4,17 +4,15 @@ class productoc
 {
     public $id_producto = 0;
     public $id_pedido = "";
-    public $nombre_producto = "";
-    public $peso_producto = "";
-    public $precio_producto = "";
     public $id_inclusion_productos = "";
     public $id_session="";
+  
     function agregar_producto()
     {
         $oconxion = new conectar();
         $conexion = $oconxion->conexion();
-        $sql = "INSERT INTO producto (id_pedido,nombre_producto,peso_producto,precio_producto,id_inclusion_productos) 
-        VALUES ($this->id_pedido,'$this->nombre_producto',$this->peso_producto,$this->precio_producto,$this->id_inclusion_productos)";
+        $sql = "INSERT INTO producto (id_pedido,id_inclusion_productos,eliminado) 
+        VALUES ($this->id_pedido,$this->id_inclusion_productos,false)";
         $result = mysqli_query($conexion, $sql);
         echo $sql;
         return $result;
@@ -23,11 +21,22 @@ class productoc
     {
         $oconexion = new conectar();
         $conexion = $oconexion->conexion();
-        $oConexion = new conectar();
-        $conexion = $oConexion->conexion();
-        $sql = "SELECT pr.nombre_producto, pr.peso_producto, pr.precio_producto FROM pedido pe INNER JOIN producto pr ON pe.id_pedido=pr.id_pedido WHERE pe.id_session='$this->id_session'";
+        $sql = "SELECT pe.id_producto, pr.nombreProducto, pr.peso, pr.precio, pr.tipopeso FROM producto pe INNER JOIN inclusion_productos pr ON pe.id_inclusion_productos=pr.id WHERE pe.id_pedido=$this->id_pedido AND pe.eliminado=false";
         $result = mysqli_query($conexion, $sql);
         $result = mysqli_fetch_all($result, MYSQLI_ASSOC);
         return $result;
     }
+
+    function eliminarproductocar($id_producto){
+        
+        $oconexion= new conectar();
+       
+        $conexion=$oconexion->conexion();
+        
+        $sql="UPDATE producto SET eliminado=1 WHERE id_producto=$id_producto";
+        
+        $result=mysqli_query($conexion,$sql);
+        return $result;
+      }
+
 }

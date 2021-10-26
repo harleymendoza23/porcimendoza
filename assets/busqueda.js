@@ -41,9 +41,9 @@ function agregarbusqueda(datos){
     var tdbotones=document.createElement('td');
     var botoneditar=document.createElement("a");
     //se crea un boton en java en este caso el boton es para editar
-    botoneditar.href="/porcimendoza/usuario/formularioeditarusuario.php?id_usuario="+datos['id_usuario'];
-    botoneditar.className="btn btn-warning";
-    botoneditar.innerHTML='<i class="fas fa-edit"></i> editar';
+   // botoneditar.href="/porcimendoza/usuario/formularioeditarusuario.php?id_usuario="+datos['id_usuario'];
+    //botoneditar.className="btn btn-warning";
+    //botoneditar.innerHTML='<i class="fas fa-edit"></i> editar';
     //se crea el boton de eliminar
     var botoneliminar=document.createElement("a");
     botoneliminar.className="btn btn-danger";
@@ -55,7 +55,7 @@ function agregarbusqueda(datos){
     });
     botoneliminar.innerHTML='<i class="fas fa-trash"></i> eliminar';
     //se guardan los botones dentro de el tdbotones 
-    tdbotones.appendChild(botoneditar);
+   // tdbotones.appendChild(botoneditar);
     tdbotones.appendChild(botoneliminar);
     //se guardan los td en el tr 
     tr.appendChild(tdnombre);

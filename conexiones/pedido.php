@@ -45,4 +45,15 @@ class pedido
             $this->id_factura = $registro['id_factura'];
         }
     }
+    function consultar_session($id_session){
+        $oconexion = new conectar();
+        $conexion = $oconexion->conexion();
+        $sql = "SELECT * FROM pedido pe INNER JOIN producto pr ON pe.id_pedido=pr.id_pedido WHERE pe.id_session='$id_session'";
+        $result = mysqli_query($conexion, $sql);
+        $result = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        foreach ($result as $registro){
+            return $registro['id_pedido'];
+        }
+       return ;
+    }
 }

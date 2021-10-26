@@ -6,7 +6,7 @@ class producto
 {
     //para utilizar las conexiones del archivo  conexion.popover-header
 
-   
+
 
 
     public $id = 0;
@@ -14,33 +14,31 @@ class producto
     public $detalleproducto = "";
     public $peso = "";
     public $precio = "";
-    public $descripcion="";
+    public $descripcion = "";
     public $tipopeso = "";
 
-    
+
 
     function nuevoproducto()
     {
-        
+
         $oconxion = new conectar();
         $conexion = $oconxion->conexion();
         $sql = "INSERT INTO inclusion_productos (nombreProducto,detalleproducto,descripcion,peso,precio,tipopeso,eliminado) 
-        VALUES ('$this->nombreProducto','$this->detalleproducto','$this->descripcion',$this->peso,$this->precio,'$this->tipopeso',false)"; 
-        
+        VALUES ('$this->nombreProducto','$this->detalleproducto','$this->descripcion',$this->peso,$this->precio,'$this->tipopeso',false)";
+        echo $sql;
         $result = mysqli_query($conexion, $sql);
-        
-       $sql= "SELECT (LAST_INSERT_ID()) as id from inclusion_productos";
+
+        $sql = "SELECT (LAST_INSERT_ID()) as id from inclusion_productos";
         $result = mysqli_query($conexion, $sql);
-        $result=mysqli_fetch_all($result, MYSQLI_ASSOC);
+        $result = mysqli_fetch_all($result, MYSQLI_ASSOC);
         // print_r($result[0]);
-        foreach ($result as $registro){
+        foreach ($result as $registro) {
             // print_r($registro);
-            $id= $registro['id'];
+            $id = $registro['id'];
             return $id;
         }
         return $result[0];
-        
-       
     }
 
 
@@ -48,34 +46,55 @@ class producto
     {
         $oconexion = new conectar();
         $conexion = $oconexion->conexion();
-         //consulta de paginacion
+        //consulta de paginacion
         $sql = "SELECT count(id) as numeroregistro FROM inclusion_productos  WHERE eliminado=false";
-        $result=mysqli_query($conexion,$sql);
-        foreach($result as $registro){
-            $this->numeroregistro=$registro['numeroregistro'];
+        $result = mysqli_query($conexion, $sql);
+        foreach ($result as $registro) {
+            $this->numeroregistro = $registro['numeroregistro'];
         }
 
-        $inicio=(($pagina-1)*6);
+        $inicio = (($pagina - 1) * 6);
 
         $sql = "SELECT * FROM inclusion_productos  WHERE eliminado=false limit 6 OFFSET $inicio";
         //serive para ejecutar la funcion
-        $result=mysqli_query($conexion,$sql);
+        $result = mysqli_query($conexion, $sql);
         //organiza el resultado de la consola y lo retorno
-        $result=mysqli_fetch_all($result, MYSQLI_ASSOC);
+        $result = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
         return $result;
     }
 
-    function listarproductodetalle(){
+    function listarproductodetalle()
+    {
         $oconexion = new conectar();
-        $conexion = $oconexion->conexion(); 
+        $conexion = $oconexion->conexion();
         $sql = "SELECT * FROM inclusion_productos  WHERE eliminado=false";
         //serive para ejecutar la funcion
-        $result=mysqli_query($conexion,$sql);
+        $result = mysqli_query($conexion, $sql);
         //organiza el resultado de la consola y lo retorno
-        $result=mysqli_fetch_all($result, MYSQLI_ASSOC);
+        $result = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
-        return $result; 
+        return $result;
+    }
+    function listadetalle($pagina){
+        $oconexion = new conectar();
+        $conexion = $oconexion->conexion();
+        //consulta de paginacion
+        $sql = "SELECT count(id) as numeroregistro FROM inclusion_productos  WHERE eliminado=false";
+        $result = mysqli_query($conexion, $sql);
+        foreach ($result as $registro) {
+            $this->numeroregistro = $registro['numeroregistro'];
+        }
+
+        $inicio = (($pagina - 1) * 2);
+
+        $sql = "SELECT * FROM inclusion_productos  WHERE eliminado=false limit 2 OFFSET $inicio";
+        //serive para ejecutar la funcion
+        $result = mysqli_query($conexion, $sql);
+        //organiza el resultado de la consola y lo retorno
+        $result = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+        return $result;
     }
 
 
@@ -99,13 +118,14 @@ class producto
         }
     }
 
-    function actualizarproducto(){
+    function actualizarproducto()
+    {
         //se instancia el objeto conectar
-        $oconexion= new conectar();
+        $oconexion = new conectar();
         //se establece conexión con la base de datos
-        $conexion=$oconexion->conexion();
+        $conexion = $oconexion->conexion();
         //consulta para actualizar el registro
-        $sql="UPDATE inclusion_productos SET nombreProducto='$this->nombreProducto',
+        $sql = "UPDATE inclusion_productos SET nombreProducto='$this->nombreProducto',
         detalleproducto='$this->detalleproducto',
         descripcion='$this->descripcion',
         peso='$this->peso',
@@ -113,25 +133,28 @@ class producto
         precio='$this->precio'
         WHERE id=$this->id";
         //se ejecuta la consulta
-        $result=mysqli_query($conexion,$sql);
+        $result = mysqli_query($conexion, $sql);
         echo $sql;
         return $result;
     }
 
-    function eliminarproducto(){
+    function eliminarproducto()
+    {
         //se instancia el objeto conectar
-        $oconexion= new conectar();
+        $oconexion = new conectar();
         //se establece conexión con la base de datos
-        $conexion=$oconexion->conexion();
+        $conexion = $oconexion->conexion();
         //consulta para eliminar el registro
-        $sql="UPDATE inclusion_productos SET eliminado=1 WHERE id=$this->id";
+        $sql = "UPDATE inclusion_productos SET eliminado=1 WHERE id=$this->id";
         // $sql="DELETE FROM estudiante WHERE id=$this->id";
         //se ejecuta la consulta
-        $result=mysqli_query($conexion,$sql);
+        $result = mysqli_query($conexion, $sql);
         return $result;
-      }
+    }
+    
 
-      function consultar_para_detalle(){
+    function consultar_para_detalle()
+    {
         $oconexion = new conectar();
         $conexion = $oconexion->conexion();
         $sql = "SELECT * FROM inclusion_productos ip WHERE ip.id<>$this->id and ip.eliminado=false";
@@ -148,8 +171,5 @@ class producto
             $this->precio = $registro['precio'];
             $this->tipopeso = $registro['tipopeso'];
         }
-      }
-    
-
-
+    }
 }

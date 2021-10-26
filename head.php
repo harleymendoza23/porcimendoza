@@ -10,11 +10,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="/PORCIMENDOZA/css/bootstrap.min.css" rel="stylesheet">
-  <link href="/PORCIMENDOZA/css/all.min.css" rel="stylesheet">
+
   <link href="/PORCIMENDOZA/css/porcimendoza.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
-  <script src="/PORCIMENDOZA/js/popper.min.js"></script>
+  <!-- <script src="/PORCIMENDOZA/js/popper.min.js"></script> -->
   <script src="/PORCIMENDOZA/js/jquery-3.6.0.min.js"></script>
   <script src="/PORCIMENDOZA/js/bootstrap.min.js"></script>
 
@@ -31,10 +31,10 @@
 
 
   <link href="/porcimendoza/assets/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
-  <link href="/porcimendoza/assets/css/all.min.css" rel="stylesheet">
+  <!-- <link href="/porcimendoza/assets/css/all.min.css" rel="stylesheet"> -->
 
-  <link rel="stylesheet" href="/porcimendoza/assets/css/ionicons.min.css">
-  <link rel="stylesheet" href="/porcimendoza/assets/css/css-font.css">
+  <!-- <link rel="stylesheet" href="/porcimendoza/css/ionicons.min.css"> -->
+  <!-- <link rel="stylesheet" href="/porcimendoza/assets/css/css-font.css"> -->
   <link rel="stylesheet" href="/porcimendoza/assets/plugins/fontawesome-free/css/all.min.css">
 
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
@@ -67,23 +67,26 @@
               <li><a href="http:/PORCIMENDOZA/productos/listausuario.php" class="nav-link active" aria-current="page"><i class="fas fa-layer-group"></i>lista de usuarios </a></li>
               <li><a href="http:/PORCIMENDOZA/administrador/modulo.php" class="nav-link active" aria-current="page"><i class="fas fa-layer-group"></i>lista de modulos </a></li>
               <li><a href="http:/PORCIMENDOZA/administrador/listarrol.php" class="nav-link active" aria-current="page"><i class="fas fa-layer-group"></i>lista de roles </a></li>
+              <li><a href="https://icons8.com/icon/EInDLGZwVHf7/usuario"></a></li>
             </ul>
           </li>
         </ul>
       </div>
 
       <form class="d-flex">
-
+        <a href="http:/PORCIMENDOZA/carro de compras/cart.php" class="nav-link active"><i class="fas fa-cart-plus"></i>Carro de compras</a>
         <?php
+
         if (isset($_SESSION['id_usuario'])) {
         ?>
-          <a href="http:/PORCIMENDOZA/carro de compras/cart.php" class="nav-link active">carro de compras</a>
-          <a href="controller/usuarioController.php?funcion=cerrarSesion" class="nav-link active"><i class="fas fa-sign-out-alt"></i>Cerrar Sesion</a>
+
+          <a href="http:/PORCIMENDOZA/login/perfil.php" ><img src="https://img.icons8.com/ios/50/000000/user--v2.png"/></a>
+          <a href="controller/usuarioController.php?funcion=cerrarSesion" class="nav-link active"><i class="fas fa-sign-out-alt"></i>Cerrar Sesión</a>
         <?php
         } else {
         ?>
-          <a href="http:/PORCIMENDOZA/login/login.php" class="nav-link active">inicio de sesion</a>
-          <a href="http:/PORCIMENDOZA/login/registro.php" class="nav-link active">registrarse</a>
+          <a href="http:/PORCIMENDOZA/login/login.php" class="nav-link active">Inicio de sesion</a>
+          <a href="http:/PORCIMENDOZA/login/registro.php" class="nav-link active">Registrarse</a>
 
         <?php
         }
@@ -152,8 +155,20 @@
   </nav>
 
 
+  <script src="/porcimendoza/assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-
+  <script src="/porcimendoza/assets/dist/js/adminlte.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <!-- se implementa lo de mensajes  -->
+  <script>
+    <?php
+    if (isset($_GET['titulo_mensaje'])) {
+    ?>
+      swal("<?php echo $_GET['titulo_mensaje']; ?>", "<?php echo $_GET['cuerpo_mensaje']; ?>", "<?php echo $_GET['tipo_mensaje'];?>");
+    <?php
+    }
+    ?>
+  </script>
 </body>
 
 </html>

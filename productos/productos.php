@@ -134,6 +134,9 @@ require '../head.php';
                 // imagen.src=URL.createObjectURL(archivo); permite que la URL guarda los archivos que esta en la variable de archivo 
                 imagen.src = URL.createObjectURL(archivo);
                 imagen.setAttribute("style", "width:100%; height:auto");
+                // var input =document.createElement('input');
+                // input.type="file";
+                // input.files=URL.createObjectURL(archivo);
                 var cuerpo = document.createElement('div');
                 cuerpo.className = "card-body";
                 var botoneliminar = document.createElement('a');
@@ -143,6 +146,7 @@ require '../head.php';
                 });
                 botoneliminar.innerHTML = '<img src="icons8-eliminar.gif" width="40px" />'
                 tarjeta.appendChild(imagen);
+                // cuerpo.appendChild(input);
                 cuerpo.appendChild(botoneliminar);
                 tarjeta.appendChild(cuerpo);
                 contenedor.appendChild(tarjeta);

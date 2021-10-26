@@ -10,6 +10,16 @@ class conectar{
 //    private $contrasena="Kpsjz1WAHj0OOqjP";
 private $usuario="root";
 private $contrasena="";
+
+// private $servidor="31.170.167.52";
+// lo que esta en nuestra base de datos
+// private $baseDatos="u587320923_porcimendoza";
+// guarda los usuarios 
+//    private $usuario="harley23";
+//   //guarda la contraseña
+//    private $contrasena="Kpsjz1WAHj0OOqjP";
+// private $usuario="u587320923_harley";
+// private $contrasena="Harley123";
 // $mysqli=new mysqli("localhost","root","password","login"); //servidor, usuario de base de datos, contraseña del usuario, nombre de base de datos
 	
 // 	if(mysqli_connect_errno()){

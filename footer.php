@@ -19,7 +19,7 @@
                 <!-- centrar texto y darle color -->
                 <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
                     <H2 class="texto" style="font-family: 'Times New Roman', Times, serif; text-align:center">
-                    porcimendoza</H2>
+                        porcimendoza</H2>
 
                     <section class="mb-4">
                         <p>
@@ -27,12 +27,12 @@
                             de san José del Guaviare por la trocha ganadera vereda santa rosa baja a 15 minutos del casco urbano.
                         </p>
                     </section>
- 
+
                 </div>
             </div>
         </footer>
-    
 
+       
 </body>
 
 </html>

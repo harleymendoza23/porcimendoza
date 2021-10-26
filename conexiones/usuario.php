@@ -11,6 +11,7 @@ class usuario
     private $usuario = "";
     private $correo = "";
     private $nombre = "";
+    private $direccion="";
     private $contrasena = "";
     private $id_rol="";
 
@@ -18,6 +19,10 @@ class usuario
     public function getIdUser()
     {
         return $this->id_usuario;
+    }
+    public function getusuario()
+    {
+        return $this->usuario;
     }
     public function getNombreUser()
     {
@@ -27,13 +32,26 @@ class usuario
     {
         return $this->correo;
     }
+    public function getcontrasena(){
+        return $this->contrasena;
+    }
     public function setIdUser($id_usuario)
     {
         $this->id_usuario = $id_usuario;
     }
+    public function setcorreo($correo){
+        $this->correo=$correo;
+    }
+    public function setdireccion($direccion){
+        $this->direccion=$direccion;
+    }
     public function setNombreUser($nombre_usuario)
     {
         $this->nombre = $nombre_usuario;
+    }
+    public function getdireccion()
+    {
+       return $this->direccion;
     }
     public function getid_rol(){
         return $this->id_rol;
@@ -51,9 +69,10 @@ class usuario
         //se genera la conexión con la base de datos
         $Conexion = $oConexion->conexion();
         //se crea la sentencia sql para registrar el usuario
-        $sql = "INSERT INTO usuario (nombre,correo,contrasena,resetContrasena,eliminado)
-        VALUES ('$nombre_usuario'_usuario,'$correo','$contrasenaMd5',0,false)";
+        $sql = "INSERT INTO usuario (nombre_usuario,correo,contrasena,resetContrasena,eliminado)
+        VALUES ('$nombre_usuario','$correo','$contrasenaMd5',0,false)";
         //ejecuta la sentencia
+        echo $sql;
         $result = mysqli_query($Conexion, $sql);
         //
         return $result;
@@ -146,6 +165,10 @@ class usuario
             $this->id_usuario = $registro['id_usuario'];
             $this->nombre_usuario = $registro['nombre_usuario'];
             $this->correo = $registro['correo'];
+            $this->contrasena=$registro['contrasena'];
+            $this->direccion=$registro['direccion'];
+            $this->usuario=$registro['usuario'];
+
         }
     }
     function actualizarusuario($id_usuario)
@@ -155,9 +178,10 @@ class usuario
         $conexion = $oconexion->conexion();
         //consulta para actualizar el registro
         $sql = "UPDATE usuario SET nombre_usuario='$this->nombre_usuario',
-           correo='correo',
-           WHERE id_usuario=>$id_usuario";
+           correo='$this->correo', direccion='$this->direccion'
+           WHERE id_usuario=$id_usuario";
         //se ejecuta la consulta
+        echo $sql;
         $result = mysqli_query($conexion, $sql);
         return $result;
     }
@@ -185,4 +209,6 @@ class usuario
         //organiza resultado de la consulta y lo retorna
         return mysqli_fetch_all($result, MYSQLI_ASSOC); 
         }
+
+   
 }
