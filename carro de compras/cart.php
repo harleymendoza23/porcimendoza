@@ -1,8 +1,9 @@
 <?php
 require_once '../head.php';
+
 require_once '../controller/controllerproducto.php';
-$oproducto = new usuarioController();
-$consulta = $oproducto->consultar_producto();
+$oproducto = new controllerproducto();
+$consulta = $oproducto->consultar_producto($_SESSION['id_usuario']);
 ?>
 <html>
 <script src="../js/separador.js"></script>
@@ -29,12 +30,14 @@ $consulta = $oproducto->consultar_producto();
                   <th>NOMBRE DEL PRODUCTO</th>
                   <th>PESO DEL PRODUCTO</th>
                   <th>PRECIO</th>
+                  <th><a href="../index.php" class="btn btn-success">Desea sea agregar mas productos</a></th>
                 </tr>
               </thead>
               <tbody>
                 <?php
                 $indicador = 0;
                 $totalPrecio = 0;
+                // print_r($consulta);
                 foreach ($consulta as $registro) {
                 ?>
                   <?php $indicador += 1; ?>
@@ -52,7 +55,16 @@ $consulta = $oproducto->consultar_producto();
                   </tr>
                 <?php
                 }
+                //mensaje para el usuario cunado la tbala este bacia 
+                if(count($consulta)==0){
+                  ?>
+                  <tr>
+                    <td colspan="4">No hay productos seleccionados  </td>
+                  </tr>
+                  <?php
+                }
                 ?>
+
               </tbody>
             </table>
           </div>
@@ -69,29 +81,39 @@ $consulta = $oproducto->consultar_producto();
           <!-- /.card-header -->
           <div class="card-body">
             <table style="height: auto; width: 20%;" class="table table-bordered">
+            <form action="../controller/usuarioController.php" method="GET">
               <thead>
                 <tr>
                   <th>Total de precio</th>
 
-                  <th>
-
-                   <!-- el boton de pago  -->
-
-                  </th>
+                  
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td>$ <?php echo $totalPrecio; ?></td>
+                           
                 </tr>
               </tbody>
+            </form>
             </table>
           </div>
         </div>
       </div>
     </div>
 
+    <form>
+  <script
+    src="https://checkout.wompi.co/widget.js"
+    data-render="button"
+    data-public-key="pub_test_tEBKyYPgoN75xyPZUNeyAG8ZJ2g5xMXz"
+    data-currency="COP"
+    data-amount-in-cents="<?php echo $totalPrecio; ?>00"
+    data-reference="<?php echo $registro['id_pedido'];?>"
 
+    >
+  </script>
+</form></td>
 
 
   </div>

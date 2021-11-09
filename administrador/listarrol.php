@@ -35,7 +35,7 @@ require '../head.php';
             <a href="/porcimendoza/administrador/formularioeditarrol.php?id_rol=<?php echo $registro['id_rol']; ?>" class="btn btn-warning"><i class="fas fa-edit"></i> editar</a>
             <!-- esta parte sirve para mostrarle al cliente los comentarios de si esta seguro de eliminar -->
             <a data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-danger" onclick="eliminar(<?php echo $registro['id_rol']; ?>);"><i class="fas fa-trash"></i> eliminar</a>
-            <a href="/PORCIMENDOZA/administrador/detallerol.php?id_rol=<?php echo $registro['id_rol']; ?>" class="btn btn-info"><i class="fas fa-search-plus"></i> detalle del rol</a>
+            <a href="/porcimendoza/administrador/detallerol.php?id_rol=<?php echo $registro['id_rol']; ?>" class="btn btn-info"><i class="fas fa-search-plus"></i> detalle del rol</a>
           </th>
         </tr>
       <?php

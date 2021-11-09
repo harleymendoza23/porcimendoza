@@ -53,9 +53,9 @@ class producto
             $this->numeroregistro = $registro['numeroregistro'];
         }
 
-        $inicio = (($pagina - 1) * 6);
+        $inicio = (($pagina - 1) * 8);
 
-        $sql = "SELECT * FROM inclusion_productos  WHERE eliminado=false limit 6 OFFSET $inicio";
+        $sql = "SELECT * FROM inclusion_productos  WHERE eliminado=false limit 8 OFFSET $inicio";
         //serive para ejecutar la funcion
         $result = mysqli_query($conexion, $sql);
         //organiza el resultado de la consola y lo retorno
@@ -88,7 +88,7 @@ class producto
 
         $inicio = (($pagina - 1) * 2);
 
-        $sql = "SELECT * FROM inclusion_productos  WHERE eliminado=false limit 2 OFFSET $inicio";
+        $sql = "SELECT * FROM inclusion_productos  WHERE id<>$this->id and eliminado=false limit 2 OFFSET $inicio";
         //serive para ejecutar la funcion
         $result = mysqli_query($conexion, $sql);
         //organiza el resultado de la consola y lo retorno

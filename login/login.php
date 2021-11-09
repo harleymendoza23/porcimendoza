@@ -22,8 +22,8 @@ require_once '../head.php';
           <div class="card-header">
             <h3 class="card-title">INICIO DE SESSION</h3>
           </div>
-          <form action="../controller/usuarioController.php" method="POST">
-            
+          <form id="formulario" action="../controller/usuarioController.php" method="POST">
+            <input type="text"  name="funcion" value="iniciarSesion" style="display:none">
             <div class="col-md-4 position-relative">
               <label for="validationTooltipUsername" class="form-label">Correo electronico</label>
               <div class="input-group has-validation">
@@ -43,14 +43,17 @@ require_once '../head.php';
                     <span class="fas fa-lock"></span>
                   </div>
                 </div>
-                <input type="password" name="contrasena" class="form-control" minlength="5" maxlength="10" id="validationTooltip03" required>
+              
+                <input class="form-control" type="password" autocomplete="FALSE" id="contrasena" name="contrasena" onchange="validarCampo(this);" minlength="5" maxlength="15" required>
+              <span id="contrasenaSpan"></span>
               </div>
             </div>
             <br>
-            <button type="submit" class="btn btn-success" name="funcion" value="iniciarSesion">Iniciar Sesión</button>
+            <button type="button" class="btn btn-success" onclick="validarPaginaFinal();"><i class="fas fa-sign-in-alt"></i> Iniciar Sesión</button>
+            
           </form>
           <p class="mb-1">
-            <a href="recuperarContrasena.php">¿Olvidó su contraseña?</a>
+            <!-- <a href="recuperarContrasena.php">¿Olvidó su contraseña?</a> -->
           </p>
           <p class="mb-0">
             <a href="registro.php" class="text-center">¿No tiene usuario?</a>
@@ -62,3 +65,84 @@ require_once '../head.php';
 </body>
 
 </html>
+<script>
+  function validarPaginaFinal() {
+    // evento.preventDefault();
+    var valido = true;
+    // agregar el id de cada campo de la página para poder validar
+    var campos = [ "contrasena"];
+    campos.forEach(element => {
+      var campo = document.getElementById(element);
+      if (!validarCampo(campo))
+        valido = false;
+    });
+    if (valido)
+      document.getElementById('formulario').submit();
+  }
+  function validarCampo(campo) {
+  var span = document.getElementById(campo.id + "Span");
+  //console.log(campo.id + "span");
+  var valido = false;
+  // agregar en el switch un caso por cada tipo de dato y llamar la función de validación
+  switch (campo.type) {
+   
+   
+  
+    case "password":
+      valido = validarPassword(campo, span);
+      break;
+ 
+  }
+  return valido;
+}
+//crear una función por cada tipo de dato, ya que cada tipo tiene sus validaciones correspondientes
+
+
+
+function validarPassword(campo, span) {
+  if (campo.required && campo.value == "") {
+    $(campo).removeClass('is-valid');
+    $(campo).addClass('is-invalid');
+    span.style = "color:red; font-size: 10pt";
+    span.innerHTML = "Por favor, Complete el campo vacio";
+    return false;
+  }
+  if (campo.value.length < campo.minLength) {
+    $(campo).removeClass('is-valid');
+    $(campo).addClass('is-invalid');
+    span.style = "color:red; font-size: 10pt";
+    span.innerHTML = "Debe tener un minimo de " + campo.minLength + " caracteres";
+    return false;
+  }
+  var campoV = campo.value;
+  var espacios = false;
+  var cont = 0;
+  while (!espacios && (cont < campoV.length)) {
+    if (campoV.charAt(cont) == " ")
+      espacios = true;
+    cont++;
+  }
+  if (espacios) {
+    $(campo).removeClass('is-valid');
+    $(campo).addClass('is-invalid');
+    span.style = "color:red; font-size: 10pt";
+    span.innerHTML = "Por favor, La contraseña no debe tener espacios";
+    return false;
+  }
+  var mediumRegex = /^(?=.\d)(?=.[!@#$%^&])(?=.[a-z])(?=.*[A-Z]).{8,}$/;
+  if (mediumRegex.test(campo.value)) {
+    $(campo).removeClass('is-valid');
+    $(campo).addClass('is-invalid');
+    span.style = "color:red; font-size: 10pt";
+    span.innerHTML = "Debe tener 1 letra mayuscula, 1 letra minuscula, 1 numero y 1 caracter especial";
+    return false;
+  }
+
+
+  $(campo).removeClass('is-invalid');
+  $(campo).addClass('is-valid');
+  span.style = "color:green; font-size: 10pt";
+  span.innerHTML = "Valor correcto";
+  return true;
+}
+</script>

@@ -32,9 +32,9 @@ require '../head.php';
             <tr class="table-primary">
                 <td><?php echo $registro['nombre_modulo']; ?> </td>
                 <th>
-                    <a href="/PORCIMENDOZA/administrador/formularioeditarmodulo.php?id_modulo=<?php echo $registro['id_modulo']; ?>" class="btn btn-warning" ><i class="fas fa-edit"></i> Editar</a>
+                    <a href="/porcimendoza/administrador/formularioeditarmodulo.php?id_modulo=<?php echo $registro['id_modulo']; ?>" class="btn btn-warning" ><i class="fas fa-edit"></i> Editar</a>
                     <a data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-danger" onclick="eliminar(<?php echo $registro['id_modulo']; ?>);"><i class="fas fa-trash"></i> Eliminar</a>
-                    <a href="/PORCIMENDOZA/administrador/detallemodulo.php?id_modulo=<?php echo $registro['id_modulo']; ?>" class="btn btn-light"><i class="fas fa-address-card"></i> Detalle</a>
+                    <a href="/porcimendoza/administrador/detallemodulo.php?id_modulo=<?php echo $registro['id_modulo']; ?>" class="btn btn-light"><i class="fas fa-address-card"></i> Detalle</a>
                 </th>
             </tr>
         <?php

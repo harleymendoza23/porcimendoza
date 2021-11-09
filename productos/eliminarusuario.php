@@ -10,7 +10,7 @@ $ousuario=new usuario();
 
 $result=$ousuario->eliminarusuario($id_usuario);
 if($result){
-    header("Location: listausuario.php");
+    header("Location: ../login/login.php?titulo_mensaje=Excelente&cuerpo_mensaje=Se+ha+eliminado+el+usuario+correctamente&tipo_mensaje=success");
 }else{
     echo "error al eliminar el usuario";
 }

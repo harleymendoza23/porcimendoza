@@ -72,7 +72,7 @@ class usuario
         $sql = "INSERT INTO usuario (nombre_usuario,correo,contrasena,resetContrasena,eliminado)
         VALUES ('$nombre_usuario','$correo','$contrasenaMd5',0,false)";
         //ejecuta la sentencia
-        echo $sql;
+        // echo $sql;
         $result = mysqli_query($Conexion, $sql);
         //
         return $result;
@@ -168,6 +168,22 @@ class usuario
             $this->contrasena=$registro['contrasena'];
             $this->direccion=$registro['direccion'];
             $this->usuario=$registro['usuario'];
+
+        }
+    }
+    function consultarusuario_perfil($id_usuario)
+    {
+        $oconexion = new conectar();
+        $conexion = $oconexion->conexion();
+        $sql = "SELECT * FROM usuario WHERE id_usuario=$id_usuario";
+        $result = mysqli_query($conexion, $sql);
+        $result = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        foreach ($result as $registro) {
+
+            //se consultan en los parametros
+            $this->id_usuario = $registro['id_usuario'];
+            $this->nombre_usuario = $registro['nombre_usuario'];
+           
 
         }
     }

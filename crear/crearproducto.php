@@ -14,7 +14,7 @@ echo $_POST['precio'];
  $result=$oProducto->nuevoproducto();
  subirArchivos($result,$archivos);
  if($result){
-    header("Location:../index.php");
+    header("Location:../productos/productos.php?titulo_mensaje=Excelente&cuerpo_mensaje=Se+agrego+el+producto+correctamente&tipo_mensaje=success");
 }else{
     echo "error al registrar los productos";
 }

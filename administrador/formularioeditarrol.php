@@ -24,7 +24,7 @@ $registro = $orol->consultarrol($_GET['id_rol']);
 
                 <div class="col col-xl-3 col-md-6 col-12">
                     <label for="">Nombre del rol</label>
-                    <input class="form-control" type="text" name="nombre_rol" value="<?php echo $orol->nombre_rol; ?>">
+                    <input class="form-control" type="text"  required minlength="5" maxlength="15" name="nombre_rol" value="<?php echo $orol->nombre_rol; ?>">
                 </div>
             </div>
             <br>
@@ -32,7 +32,7 @@ $registro = $orol->consultarrol($_GET['id_rol']);
                 <!-- <input type="submit" class="btn btn-info" value="Guardar" onclick="datos()"> -->
                 <button type="submit" class="btn btn-success" name="funcion" value="editarrol"><i class="far fa-save"></i> Guardar</button>
             </div><br>
-            <a href="/PORCIMENDOZA/administrador/listarrol.php" class="btn btn-dark"><i class="fas fa-arrow-circle-left"></i> Volver</a>
+            <a href="/porcimendoza/administrador/listarrol.php" class="btn btn-dark"><i class="fas fa-arrow-circle-left"></i> Volver</a>
             <a href="../index.php" class="btn btn-outline-info">Página principal</a>
         </div>
     </form>

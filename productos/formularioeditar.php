@@ -17,41 +17,43 @@ $registro = $oproducto->consultarproducto();
         <div class="container">
             <div class="row align-items-center">
                 <div class="col col-xl-3 col-md-6 col-12">
-                    <label for="">Nombre del producto</label>
+                    <h5 style="text-align:center">Nombre del producto</h5>
                     <input class="form-control" required minlength="5" maxlength="20" type="text" name="nombreProducto" value="<?php echo $oproducto->nombreProducto; ?>">
                 </div>
                 <div class="col col-xl-3 col-md-6 col-12">
-                    <label for="">Detalle del producto</label>
+                    <h5 style="text-align:center">Detalle del producto</h5>
                     <input class="form-control" type="text" name="detalleproducto" value="<?php echo $oproducto->detalleproducto; ?>">
                 </div>
-                <div class="col col-xl-3 col-md-6 col-12">
-                    <label for="">descripcion del producto</label>
-                    <input class="form-control" required minlength="5" maxlength="20" type="text" name="descripcion" value="<?php echo $oproducto->descripcion; ?>">
+                <div class="col-md-6" >
+                    <h5 style="text-align:center">Descripción del producto</h5>
+
+                    <input class="form-control" placeholder="por ejemplo:raza doble jamon" required minlength="5" maxlength="25" type="text" name="descripcion" value="<?php echo $oproducto->descripcion; ?>">
                 </div>
+                
 
                 <div class="col col-xl-3 col-md-6 col-12">
-                    <label for="">peso del producto</label>
+                    <h5  style="text-align:center">Peso del producto</h5>
                     <input class="form-control" type="number" min="1" max="500" name="peso" value="<?php echo $oproducto->peso; ?>">
                 </div>
                 <div class="col col-xl-3 col-md-6 col-12">
-                    <label for="">Tipo de peso</label>
+                    <h5 style="text-align:center">Tipo de peso</h5>
                     <!-- <input type="text" name="id" value="<?php echo $oproducto->id; ?>" style="display:none;"> -->
                     <select class="form-select" name="tipopeso" id="">
                         <option value="" disabled selected>tipo peso</option>
-                        <option value='libras' <?php if ($oproducto->tipopeso == "libras") echo "selected"; ?>>libras</option>
-                        <option value='kilo' <?php if ($oproducto->tipopeso == "kilo") echo "selected"; ?>>kilos</option>
-                        <option value='arroba' <?php if ($oproducto->tipopeso == "arroba") echo "selected"; ?>>arrobas</option>
+                        <option value='libras' <?php if ($oproducto->tipopeso == "libras") echo "selected"; ?>>Libras</option>
+                        <option value='kilo' <?php if ($oproducto->tipopeso == "kilo") echo "selected"; ?>>Kilos</option>
+                        <option value='arroba' <?php if ($oproducto->tipopeso == "arroba") echo "selected"; ?>>Arrobas</option>
                     </select>
                 </div>
                 <div class="col col-xl-3 col-md-6 col-12">
-                    <label for="">precio del producto</label>
+                    <h5 style="text-align:center">Precio del producto</h5>
                     <input class="form-control" type="text" minlength="5" maxlength="40" required name="precio" id="separador" value="<?php echo $oproducto->precio; ?>">
                 </div>
             </div>
         </div>
         <br>
-        <div class="rowg-3">
-            <!-- ---------------------------------------------------------------------------------- -->
+        <!-- <div class="rowg-3">
+            
             <div class="col-md-6">
                 <div class="card card-default">
                     <div class="card-header">
@@ -116,7 +118,7 @@ $registro = $oproducto->consultarproducto();
                 </div>
             </div>
         </div>
-        </div>
+        </div>-->
         </section>
         </div>
         <aside class="control-sidebar control-sidebar-dark">
@@ -127,7 +129,7 @@ $registro = $oproducto->consultarproducto();
 
         <a href="productoslista.php" class="btn btn-outline-info">volver</a>
         <a href="index.php" class="btn btn-outline-info">pagina principal</a>
-    </form>
+    </form> 
 
     <script src="../assets/plugins/jquery/jquery.min.js"></script>
     <script src="../assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>

@@ -3,7 +3,7 @@ require_once '../head.php'; ?>
 <!DOCTYPE html>
 <html lang="es">
 
-<body style="background:#BDC3C7 fixed no-repeat 0 0 ;">
+<body style="background-color: #FDEBD0;">
     <?php
     require_once '../conexiones/conexion.php';
     $oconexion = new conectar();
@@ -14,12 +14,9 @@ require_once '../head.php'; ?>
     $consulta = $oproducto->consultarproducto();
     ?>
 
-    <section class="content" style="background-color: #CACFD2;">
+    <section class="content">
         <?php
-        require_once '../conexiones/producto.php';
-        $oproducto = new producto();
-        $oproducto->id = $_GET['id'];
-        $consulta = $oproducto->consultarproducto();
+
 
         $publicidad = new producto();
         $publicidad->id <> $_GET['id'];
@@ -37,12 +34,12 @@ require_once '../head.php'; ?>
         <div class="container-fluid">
 
             <div class="row">
-                <div class="col col-xl-3 col-md-6 col-12 container-fluid" style="background-color: gainsboro; border-style: ridge;">
+                <div class="col col-xl-3 col-md-6 col-12 container-fluid" style="border: double; border-color: #F0B27A ; background-color: #ECF0F1 ;">
                     <section class="content-header">
 
                         <div class="row mb-2">
                             <div class="col-sm-12" style="border-style: inset;">
-                                <label>Productos que tambien le pueden interesar</label>
+                                <h4>Productos que tambien le pueden interesar</h4>
                             </div>
                         </div>
 
@@ -60,7 +57,7 @@ require_once '../head.php'; ?>
                             $oimagen->idproducto = $registro['id'];
                             $vistaimagen = $oimagen->consultarimagen_publicidad();
                             ?>
-                            <div class="card mb-100 shadow-sm" >
+                            <div class="card mb-100 shadow-sm">
                                 <div class="card-header">
                                     <h4 class="my-0 font-weight-bold"><?php echo $registro['nombreProducto']; ?></h4>
                                 </div>
@@ -100,8 +97,8 @@ require_once '../head.php'; ?>
 
                                     </ul>
                                 </div>
-                                <a href="/PORCIMENDOZA/productos/detalleproducto.php?id=<?php echo $registro['id']; ?>" class="btn bg-info" style="width:auto; height: 40px;"> detalle del producto</a>
-                                <a href="/PORCIMENDOZA/controller/controllerproducto.php?funcion=añadirAlCarrito&id=<?php echo $registro['id']; ?>" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>Añadir al carrito</a>
+                                <a href="/porcimendoza/productos/detalleproducto.php?id=<?php echo $registro['id']; ?>" class="btn bg-info" style="width:auto; height: 40px;"> detalle del producto</a>
+                                <a href="/porcimendoza/controller/controllerproducto.php?funcion=añadirAlCarrito&id=<?php echo $registro['id']; ?>" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>Añadir al carrito</a>
 
                             </div>
 
@@ -120,7 +117,7 @@ require_once '../head.php'; ?>
 
 
                 <div class="col col-xl-6 col-md-6 col-12 container">
-                    <div class="container-fluid" >
+                    <div class="container-fluid" style="border: double; border-color: #F0B27A ; background-color: #ECF0F1 ;">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-12 col-sm-6">
@@ -132,7 +129,7 @@ require_once '../head.php'; ?>
                                     ?>
                                     <div class="card-group mt-12">
                                         <!-- este es el corrusel donde se guardan las imagenes para mostrarle al usuario -->
-                                        <div class="card-body" style="border-style: ridge;">
+                                        <div class="card-body" style="border: double; border-color: #F0B27A ; background-color: #ECF0F1 ;">
                                             <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
                                                 <div class="carousel-indicators">
                                                     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -172,7 +169,7 @@ require_once '../head.php'; ?>
                                     <h3 class="my-3" style="border-style: inset;"><?php echo $oproducto->nombreProducto; ?></h3>
                                     <br>
                                     <h4 style="border-style: inset;">PESO DEL PRODUCTO</h4>
-                                    <div class="bg-gray py-2 px-3 mt-4" style="border: solid; width: 150px; height: 80px;">
+                                    <div class="bg-gray py-2 px-3 mt-4" style="border: double; border-color: #F0B27A ; background-color: #ECF0F1 ;">
                                         <label>
 
                                             <h5> <?php echo $oproducto->tipopeso; ?></h5>
@@ -180,17 +177,21 @@ require_once '../head.php'; ?>
                                             <h4> <?php echo $oproducto->peso; ?></h4>
                                         </label>
                                     </div>
-                                    <div class="bg-gray py-2 px-3 mt-4" style="width: 150px; height: 60px; border: solid;">
+                                    <div class="bg-gray py-2 px-3 mt-4" style="border: double; border-color: #F0B27A ; background-color: #ECF0F1 ;">
                                         <h2 class="mb-0">
                                             $<?php echo $oproducto->precio; ?>
                                         </h2>
                                     </div>
-                                    <div class="bg-gray py-2 px-3 mt-4" style="border-style: dashed;">
+                                    <div class="bg-gray py-2 px-3 mt-4" style="border: double; border-color: #F0B27A ; background-color: #ECF0F1 ;">
                                         <p>El domicilio es totalmente gratis, desde el momento que realice la compra nuestro personal se comunicara con el usuario para cordinar la entrega del producto.</p>
                                     </div>
                                 </div>
                                 <div class="mt-4">
-                                    <a href="/PORCIMENDOZA/controller/controllerproducto.php?funcion=añadirAlCarrito&id=<?php echo $oproducto = $_GET['id']; ?>" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>Añadir al carrito</a>
+                                    
+
+                                        <a href="/porcimendoza/controller/controllerproducto.php?funcion=añadirAlCarrito&id=<?php echo $oproducto = $_GET['id']; ?>" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>Añadir al carrito</a>
+
+                                    
                                 </div>
                                 <?php
                                 require_once '../conexiones/producto.php';
@@ -201,7 +202,7 @@ require_once '../head.php'; ?>
                                 <div class="row mt-4">
                                     <nav class="w-100">
                                         <div>
-                                            <h3 class="nav-item nav-link active" style="border-style: inset;" aria-selected="true">Características principales</h3>
+                                            <h3 class="nav-item nav-link active" style="border: double; border-color: #F0B27A ; background-color: #ECF0F1 ;" aria-selected="true">Características principales</h3>
                                         </div>
                                     </nav>
                                     <div class="row">
@@ -218,7 +219,7 @@ require_once '../head.php'; ?>
                                 <div class="row mt-4">
                                     <nav class="w-100">
                                         <div>
-                                            <h3 style="border-style: inset;" aria-selected="true">Descripción</h3>
+                                            <h3 style="border: double; border-color: #F0B27A ; background-color: #ECF0F1 ;" aria-selected="true">Descripción</h3>
                                         </div>
                                     </nav>
                                     <div class="tab-content p-3" id="nav-tabContent">
@@ -229,7 +230,7 @@ require_once '../head.php'; ?>
                         </div>
                     </div>
                 </div>
-                <div class="col col-2 container-fluid" style="background-color: gainsboro;border-style: ridge;">
+                <div class="col col-2 container-fluid" style="border: double; border-color: #F0B27A ; background-color: #ECF0F1 ;">
                     <br>
                     <a href="../index.php" class="btn btn-dark"><i class="fas fa-arrow-circle-left"></i> Pagina principal</a>
                 </div>

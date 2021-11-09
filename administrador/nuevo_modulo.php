@@ -2,7 +2,8 @@
 require '../head.php';
 ?>
 <html>
-<body  style="background-color:lemonchiffon;">
+
+<body style="background-color:lemonchiffon;">
     <div class="container">
         <center>
             <form action="../crear/crear_modulo.php" method="GET" id="color">
@@ -11,7 +12,7 @@ require '../head.php';
                     <input type="text" name="nombre_modulo">
                 </div>
                 <div class="col-sm-3"><br>
-                  <input type="submit" class="btn btn-info" value="guardar" onclick="datos()">
+                    <input type="submit" class="btn btn-info" value="guardar" onclick="datos()">
                 </div><br>
     </div>
     </center>

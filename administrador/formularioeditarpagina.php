@@ -22,14 +22,28 @@ $registro = $opagina->consultarPagina();
                 </div>
                 <div class="col col-xl-3 col-md-6 col-12">
                     <label for="">Enlace de la página</label>
-                    <input class="form-control" required minlength="5"  type="text" name="enlace" value="<?php echo $opagina->enlace; ?>">
+                    <input class="form-control" required minlength="5" type="text" name="enlace" value="<?php echo $opagina->enlace; ?>">
+                </div>
+                <div class="col col-xl-4 col-md-8 col-12">
+                    <label for="">¿Requiere inicio de sessión?</label>
+                    <select class="form-select" name="inicio_session" id="">
+                        <option value='1' <?php if ($opagina->inicio_session == "1") echo "selected"; ?>>Verdadero</option>
+                        <option value='0' <?php if ($opagina->inicio_session == "0") echo "selected"; ?>>Falso</option>
+                    </select>
+                </div>
+                <div class="col col-xl-4 col-md-8 col-12">
+                    <label for="">¿Requiere menu?</label>
+                    <select class="form-select" name="menu" id="">
+                        <option value='1' <?php if ($opagina->menu == "1") echo "selected"; ?>>Si</option>
+                        <option value='0' <?php if ($opagina->menu == "0") echo "selected"; ?>>No</option>
+                    </select>
                 </div>
             </div>
         </div>
         <br>
         <div class="col col-xl-3 col-md-6 col-12">
             <button type="submit" class="btn btn-success" name="funcion" value="editarpagina">Guardar</button>
-            <a href="detallemodulo.php?id_modulo=<?php echo $opagina->id_modulo;?>" class="btn btn-outline-info">volver</a>
+            <a href="detallemodulo.php?id_modulo=<?php echo $opagina->id_modulo; ?>" class="btn btn-outline-info">volver</a>
             <a href="../index.php" class="btn btn-outline-info">pagina principal</a>
         </div>
     </form>

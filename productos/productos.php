@@ -28,7 +28,6 @@ require '../head.php';
              
                 <div class="col-md-6" style="color: #FBFCFC;">
                     <h5 style="text-align:center">nombre del producto</h5>
-
                     <input class="form-control" placeholder="por ejemplo:cerdos" required minlength="5" maxlength="20" type="text" name="nombreProducto">
                 </div>
 
@@ -147,7 +146,7 @@ require '../head.php';
                 botoneliminar.innerHTML = '<img src="icons8-eliminar.gif" width="40px" />'
                 tarjeta.appendChild(imagen);
                 // cuerpo.appendChild(input);
-                cuerpo.appendChild(botoneliminar);
+                // cuerpo.appendChild(botoneliminar);
                 tarjeta.appendChild(cuerpo);
                 contenedor.appendChild(tarjeta);
             }

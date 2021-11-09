@@ -29,17 +29,17 @@ $usuario = $oUser->getusuario();
                                 <circle cx="12" cy="7" r="4"></circle>
                             </svg>Información personal
                         </a>
-                        <a href="#account" data-toggle="tab" class="nav-item nav-link has-icon nav-link-faded">
+                        <!-- <a href="#account" data-toggle="tab" class="nav-item nav-link has-icon nav-link-faded">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-settings mr-2">
                                 <circle cx="12" cy="12" r="3"></circle>
                                 <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
                             </svg>Configuraciones de la cuenta
-                        </a>
-                        <a href="#security" data-toggle="tab" class="nav-item nav-link has-icon nav-link-faded">
+                        </a> -->
+                        <!-- <a href="#security" data-toggle="tab" class="nav-item nav-link has-icon nav-link-faded">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shield mr-2">
                                 <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
                             </svg>Seguridad
-                        </a>
+                        </a> -->
 
 
                     </nav>
@@ -115,13 +115,13 @@ $usuario = $oUser->getusuario();
                             <button type="reset" class="btn btn-light">Restablecer cambios</button>
                         </form>
                     </div>
-                    <div class="tab-pane" id="account">
+                    <!-- <div class="tab-pane" id="account">
                         <h6>CONFIGURACIONES DE LA CUENTA</h6>
                         <hr>
                         <form>
                             <div class="form-group">
                                 <label for="username">Nombre de usuario</label>
-                                <input type="text" class="form-control" id="username" aria-describedby="usernameHelp" placeholder="Ingrese tu usuario" value="<?php echo $usuario; ?>">
+                                <input type="text" class="form-control" id="username" aria-describedby="usernameHelp" placeholder="Ingrese tu usuario" value="<?php echo $nombre_usuario; ?>">
                                 <small id="usernameHelp" class="form-text text-muted">Después de cambiar su nombre de usuario, su antiguo nombre de usuario estará disponible para que cualquier otra persona lo reclame.</small>
                             </div>
                             <hr>
@@ -129,10 +129,11 @@ $usuario = $oUser->getusuario();
                                 <label class="d-block text-danger">Borrar cuenta</label>
                                 <p class="text-muted font-size-sm">Una vez que elimine su cuenta, no hay vuelta atrás. Por favor, tenga la certeza.</p>
                             </div>
+                            <a data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-danger" onclick="eliminar(<?php echo $id_usuario = $_SESSION['id_usuario']; ?>);"><i class="fas fa-trash"></i> eliminar</a>
                             <button class="btn btn-danger" type="button">Borrar cuenta</button>
                         </form>
-                    </div>
-                    <div class="tab-pane" id="security">
+                    </div> -->
+                    <!-- <div class="tab-pane" id="security">
                         <h6>CONFIGURACIONES DE SEGURIDAD</h6>
                         <hr>
                         <form>
@@ -152,7 +153,7 @@ $usuario = $oUser->getusuario();
                             </div>
                         </form>
 
-                    </div>
+                    </div> -->
 
 
                 </div>
@@ -162,3 +163,28 @@ $usuario = $oUser->getusuario();
 </div>
 
 </div>
+ <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">!!ELIMINAR!!</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                esta seguro que quiere eliminar el usuario
+            </div>
+            <div class="modal-footer">
+                <form action="../productos/eliminarusuario.php" method="get">
+                    <input type="text" name="id_usuario" id="eliminar" style="display:none;">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">cancelar</button>
+                    <button type="submit" class="btn btn-danger">eliminar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div> 
+<script>
+    function eliminar(id_usuario) {
+        document.getElementById('eliminar').value = id_usuario;
+    }
+</script>

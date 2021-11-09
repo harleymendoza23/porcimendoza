@@ -55,7 +55,6 @@
         </div>
         <div class="row">
           <div class="col-8">
-
           </div>
           <!-- /.col -->
           <div class="col-4">
@@ -64,11 +63,9 @@
           <!-- /.col -->
         </div>
       </form>
-
       
-
       <p class="mb-1">
-        <a href="recuperarContrasena.php">¿Olvidó su contraseña?</a>
+        <!-- <a href="recuperarContrasena.php">¿Olvidó su contraseña?</a> -->
       </p>
       <p class="mb-0">
         <a href="login.php" class="text-center">¿Quiere iniciar Sesión?</a>
@@ -77,8 +74,5 @@
     
   </div>
 </div>
-
-
-
 </body>
 </html>

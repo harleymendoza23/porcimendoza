@@ -54,6 +54,11 @@ switch ($funcion) {
     case "actualizar_usuario":
         $oUsuario->actualizar_usuario();
         break;
+    case "verificar_menu":
+        $oUsuario->verificar_menu();
+        break;
+       
+            
 }
 
 
@@ -77,18 +82,20 @@ class usuarioController
                 //se registra al usuario
                 $result = $oUser->registroUsuario($nombre_usuario, $correo, $contrasena);
                 if ($result) {
-                    // header("location:../index.php");
+                     header("location:../login/login.php?titulo_mensaje=Excelente&cuerpo_mensaje=Usuario+creado+con+exito+Ahora+inicia+sesión&tipo_mensaje=success");
                 } else {
                     echo "error al momento de registrar el usuario";
                 }
             } else {
                 // existe un registro con este correo electronico
-                echo "ya existe un registro con este correo electronico";
+                header ("location:../login/login.php?titulo_mensaje=Hooo+que+mal&cuerpo_mensaje=Ya+existe+un+usuario+con+este+correo&tipo_mensaje=warning");
+       
             }
         } else {
             //si són diferentes le vamos a indicar al usuario que no son iguales
             //no se genera el registro
-            echo "la contraseña y confirmación de la contraseña no coinciden";
+            // echo "la contraseña y confirmación de la contraseña no coinciden";
+            header("location:../login/registro.php?titulo_mensaje=Excelente&cuerpo_mensaje=Se+agrego+el+producto+correctamente&tipo_mensaje=success");
         }
     }
 
@@ -105,9 +112,9 @@ class usuarioController
         if ($oUser->getIdUser() != "") {
             $_SESSION['id_usuario'] = $oUser->getIdUser();
             $_SESSION['nombre_usuario'] = $oUser->getNombreUser();
-            header("location:../index.php");
+            header("location:../index.php?titulo_mensaje=Excelente&cuerpo_mensaje=Bienvenido+a+PORCIMENDOZA&tipo_mensaje=success");
         } else {
-            echo "usuario o contraseña incorrecta";
+           header ("location:../login/login.php?titulo_mensaje=Hooo+que+mal&cuerpo_mensaje=Usuario+o+contraseña+incorrectos&tipo_mensaje=warning");
         }
     }
     // public function registrarUsuarioPorRol()
@@ -187,7 +194,7 @@ class usuarioController
         // }
 
         if ($result) {
-            header("Location: ../productos/formularioeditar.php?id=$oproducto->id");
+            header("Location: ../productos/productoslista.php?titulo_mensaje=Bien&cuerpo_mensaje=Se+ha+actualizado+la+información+correctamente&tipo_mensaje=success");
         } else {
             echo "error al actualizar el producto";
         }
@@ -217,6 +224,8 @@ class usuarioController
         $opagina->id_modulo = $_GET['id_modulo'];
         $opagina->nombre_pagina = $_GET['nombre_pagina'];
         $opagina->enlace = $_GET['enlace'];
+        $opagina->inicio_session = $_GET['inicio_session'];
+        $opagina->menu=$_GET['menu'];
 
         $result = $opagina->nuevoPagina();
         if ($result) {
@@ -233,6 +242,8 @@ class usuarioController
         $opagina->id_pagina = $_GET['id_pagina'];
         $opagina->nombre_pagina = $_GET['nombre_pagina'];
         $opagina->enlace = $_GET['enlace'];
+        $opagina->inicio_session = $_GET['inicio_session'];
+        $opagina->menu=$_GET['menu'];
 
         $result = $opagina->actualizarPagina();
         if ($result) {
@@ -264,8 +275,8 @@ class usuarioController
 
         $result = $orol->actualizarRol();
         if ($result) {
-            
-            header("Location: ../administrador/listarrol.php?titulo_mensaje=bien&cuerpo_mensaje=Se+ha+actulaizado+la+informacion&tipo_mensaje=success");
+
+            header("Location: ../administrador/listarrol.php?titulo_mensaje=Bien&cuerpo_mensaje=Se+ha+actulaizado+la+informacion&tipo_mensaje=success");
         } else {
             echo "error al actualizar la pagina";
         }
@@ -298,7 +309,7 @@ class usuarioController
     public function actualizar_usuario()
     {
         require_once '../conexiones/usuario.php';
-        $id_usuario=$_GET['id_usuario'];
+        $id_usuario = $_GET['id_usuario'];
         $oUsuario = new usuario();
         $oUsuario->nombre_usuario = $_GET['nombre_usuario'];
         $oUsuario->setcorreo($_GET['correo']);
@@ -306,9 +317,52 @@ class usuarioController
         $result = $oUsuario->actualizarusuario($id_usuario);
 
         if ($result) {
-            header("Location: ../login/perfil.php?titulo_mensaje=bien&cuerpo_mensaje=Se+ha+actualizado+la+información+correctamente&tipo_mensaje=success" );
+            header("Location: ../login/perfil.php?titulo_mensaje=bien&cuerpo_mensaje=Se+ha+actualizado+la+información+correctamente&tipo_mensaje=success");
         } else {
             echo "error al actualizar la pagina";
         }
     }
+
+    //funcion para crear los permisos de modulo
+    public function verificar_permiso($enlace)
+    {
+        // session_start();
+        if (file_exists("../conexiones/pagina.php"))
+            require_once '../conexiones/pagina.php';
+        else
+            require_once 'conexiones/pagina.php';
+        $opagina = new pagina();
+        $opagina->consultar_permiso($enlace);
+        // print_r($opagina);
+        //sin haber iniciado session
+        if ($opagina->inicio_session && !isset($_SESSION['id_usuario'])) {
+            header("location:../login/login.php?titulo_mensaje=Que+mal+:(&cuerpo_mensaje=Debe+tener+permisos+&tipo_mensaje=warning");
+        }
+        //habiendo iniciado session pero sin permiso para las paginas 
+        if ($opagina->inicio_session && isset($_SESSION['id_usuario'])) {
+            require_once '../conexiones/permiso.php';
+            $opermiso = new permiso();
+            $opermiso->id_usuario = $_SESSION['id_usuario'];
+            $opermiso->id_pagina = $opagina->id_pagina;
+            $opermiso->permiso_pagina();
+            if ($opermiso->id_permiso == "") {
+                header("location:../login/login.php");
+                // echo "no tiene permiso";
+            }
+        }
+    }
+
+    public function verificar_menu()
+    {
+        if (file_exists("../conexiones/permiso.php"))
+            require_once '../conexiones/permiso.php';
+        else
+            require_once 'conexiones/permiso.php';
+
+        $opermiso = new permiso();
+        $opermiso->id_usuario = $_SESSION['id_usuario'];
+
+        return   $opermiso->verificar_menu();
+    }
+   
 }

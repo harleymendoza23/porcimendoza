@@ -8,8 +8,8 @@ if (isset($_GET['page'])) $pagina = $_GET['page'];
 else $pagina = 1;
 $consulta = $oproducto->listarproducto($pagina);
 $numeroregistro = $oproducto->numeroregistro;
-$numpagina = intval($numeroregistro / 6);
-if (fmod($numeroregistro, 6) > 0) $numpagina++;
+$numpagina = intval($numeroregistro / 8);
+if (fmod($numeroregistro, 8) > 0) $numpagina++;
 
 ?>
 <script src="../porcimendoza/js/separador.js"></script>
@@ -25,7 +25,7 @@ if (fmod($numeroregistro, 6) > 0) $numpagina++;
   <link rel="stylesheet" href="css/index.min.css">
 </head>
 
-<body style="background:#BDC3C7 fixed no-repeat 0 0 ;">
+<body>
 
   <?php
   require 'head.php';
@@ -33,11 +33,11 @@ if (fmod($numeroregistro, 6) > 0) $numpagina++;
   ?>
   <br>
   <div class="container-fluid">
-    <div class="row">
+    <div class="row" >
       <!-- paginacion -->
-      <div class="col col-xl-3 col-md-6 col-12">
+      <div class="col col-xl-12">
         <div class="car-tools">
-          <ul class="pagination pagination-sm float-md-right border border-dark">
+          <ul id="paginacion" class="pagination pagination-sm float-md-right border border-dark">
             <li class="page-item"><a class="page-link" href="index.php?page=1">&laquo;</a></li>
             <?php
             for ($i = 1; $i <= $numpagina; $i++) {
@@ -52,38 +52,15 @@ if (fmod($numeroregistro, 6) > 0) $numpagina++;
       </div>
     </div>
     <div class="row">
-    <div class="col col-xl-2 col-md-6 col-12">
-        <div class="card" style=" position: -webkit-sticky;position: sticky;top: 15px; background-color: #AED6F1; border: solid; ">
-          <!-- position: -webkit-sticky;position: sticky;  sirve para dejar algo que siempre se vea-->
-
-          <label for=""> Organizar por precios:</label>
-          <div class="col col-xl-3 col-md-6 col-12">
-            <input type="text" style="height: auto; width: 100px;" placeholder=" Menor" name="producto_menor" id="separador">
-            <label for=""></label>
-            <input type="text" style="height: auto; width: 100px;" placeholder="Mayor" name="producto_mayor" id="separadormayor">
-            <a href="" class="btn bg-info">Buscar</a>
-          </div>
-          <br>
-          <br>
-          <div class="col col-xl-3 col-md-6 col-12">
-            <label for=""> Organizar por peso</label>
-          </div>
-          <div class="col col-xl-3 col-md-6 col-12">
-            <input type="text" style="height: auto; width: 100px;" placeholder="Peso menor " name="peso_menor">
-            <label for=""></label>
-            <input type="text" style="height: auto; width: 100px;" placeholder="Peso mayor " name="peso_mayor">
-            <a href="" class="btn bg-info">Buscar</a>
-          </div>
-          <br>
-        </div>
-      </div>
-      <div class="col col-10">
+      
+    
+      <div class="col col-12">
         <div class="container-fluid">
-          <div class="row">
+          <div class="row"> 
             <?php
             foreach ($consulta as $registro) {
             ?>
-              <div class="col-md-4 ">
+              <div class="col-md-3">
 
                 <?php
                 require_once 'conexiones/imagenes.php';
@@ -121,10 +98,14 @@ if (fmod($numeroregistro, 6) > 0) $numpagina++;
 
                     </div>
                     <ul class="list-unstyled mt-1 mb-4">
-                      <h1 style="text-align:center;" class="card-title pricing-card-title precio">$ <span id="<?php echo $registro['id']; ?>" class="">
+                      <h1 style="text-align:center;" class="card-title pricing-card-title precio"> <span id="<?php echo $registro['id']; ?>" class="">
                           <?php echo $registro['precio']; ?>
                           <!--<script> separador('<?php echo $registro['id']; ?>','<?php echo $registro['precio']; ?>') </script>  -->
-                        </span> <script> separador('<?php echo $registro['id']; ?>','<?php echo $registro['precio']; ?>') </script> </h1>
+                        </span>
+                        <script>
+                          separador('<?php echo $registro['id']; ?>', '<?php echo $registro['precio']; ?>')
+                        </script>
+                      </h1>
                     </ul>
                     <ul class="list-unstyled mt-4 mb-2">
 
@@ -132,8 +113,12 @@ if (fmod($numeroregistro, 6) > 0) $numpagina++;
 
                     </ul>
                   </div>
-                  <a href="/PORCIMENDOZA/productos/detalleproducto.php?id=<?php echo $registro['id']; ?>" class="btn bg-info" style="width:auto; height: 40px;"> detalle del producto</a>
-                  <a href="/PORCIMENDOZA/controller/controllerproducto.php?funcion=añadirAlCarrito&id=<?php echo $registro['id']; ?>" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>Añadir al carrito</a>
+                  
+                 
+                    <a href="/porcimendoza/controller/controllerproducto.php?funcion=añadirAlCarrito&id=<?php echo $registro['id']; ?>" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>Añadir al carrito</a>
+                  
+                  <a href="/porcimendoza/productos/detalleproducto.php?id=<?php echo $registro['id']; ?>" class="btn bg-info" style="width:auto; height: 40px;"> detalle del producto</a>
+
 
                 </div>
 
@@ -185,4 +170,9 @@ require_once 'footer.php';
       e.target.value = salida.join('.').split("").reverse().join('');
     }
   }, false);
+
+
+</script>
+<script src="../porcimendoza/js/filtro.js">
+  
 </script>

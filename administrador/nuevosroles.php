@@ -29,7 +29,7 @@ require '../head.php';
                     <!-- <input type="submit" class="btn btn-info" value="Guardar" onclick="datos()"> -->
                     <button type="submit" class="btn btn-success" name="funcion" value="nuevorol"><i class="far fa-save"></i> Guardar</button>
                 </div><br>
-                <a href="/PORCIMENDOZA/administrador/listarrol.php" class="btn btn-dark"><i class="fas fa-arrow-circle-left"></i> Volver</a>
+                <a href="/porcimendoza/administrador/listarrol.php" class="btn btn-dark"><i class="fas fa-arrow-circle-left"></i> Volver</a>
                 <a href="../index.php" class="btn btn-outline-info">Página principal</a>
             
             </form>

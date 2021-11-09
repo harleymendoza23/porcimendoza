@@ -48,8 +48,11 @@ $omodulo->consultarmodulo();
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>Nombre_Pagina</th>
+                    <th>Nombre pagina</th>
                     <th>Enlace</th>
+                    <th>Requiere inicio de sessión</th>
+                    <th>Requiere menu</th>
+
                     <th><a class="btn btn-info" href="nuevapagina.php?id_modulo=<?php echo $_GET['id_modulo']; ?>"><i class="fas fa-user-plus"></i> Nueva pagina</a></th>
                 </tr>
             </thead>
@@ -64,6 +67,17 @@ $omodulo->consultarmodulo();
 
                         <td><?php echo $registro['nombre_pagina']; ?></td>
                         <td><?php echo $registro['enlace']; ?></td>
+                        <td><?php if ($registro['inicio_session'] == 1) {
+                                echo "Si";
+                            } else {
+                                echo "No";
+                            }
+                            ?></td>
+                        <td><?php if ($registro['menu'] == 1) {
+                                echo "Si";
+                            } else {
+                                echo "No";
+                            } ?></td>
                         <td>
                             <a href="/porcimendoza/administrador/formularioeditarpagina.php?id_pagina=<?php echo $registro['id_pagina']; ?>" class="btn btn-warning"><i class="fas fa-user-edit"></i> Editar</a>
                             <a class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="eliminar(<?php echo $registro['id_pagina']; ?>, <?php echo $registro['id_modulo']; ?>)"><i class="fas fa-trash-alt"></i> Eliminar</a>
@@ -74,7 +88,7 @@ $omodulo->consultarmodulo();
                 ?>
             </tbody>
         </table>
-        <a href="/PORCIMENDOZA/administrador/modulo.php" class="btn btn-dark"> <i class="fas fa-arrow-circle-left"></i> Atras</a>
+        <a href="/porcimendoza/administrador/modulo.php" class="btn btn-dark"> <i class="fas fa-arrow-circle-left"></i> Atras</a>
     </div>
 </body>
 
@@ -102,9 +116,9 @@ $omodulo->consultarmodulo();
     </div>
 </div>
 <script>
-    function eliminar(id_pagina,id_modulo) {
-        document.getElementById('eliminar').value=id_pagina;
+    function eliminar(id_pagina, id_modulo) {
+        document.getElementById('eliminar').value = id_pagina;
         document.getElementById('eliminar_pagina').value = id_modulo;
-       
+
     }
 </script>

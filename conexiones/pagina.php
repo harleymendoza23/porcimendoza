@@ -1,6 +1,9 @@
 <?php
 
+if (file_exists("../conexiones/conexion.php"))
 require_once '../conexiones/conexion.php';
+else
+require_once 'conexiones/conexion.php';
 
 class pagina{
     //atributos de la tabla pagina
@@ -9,6 +12,9 @@ class pagina{
     public $nombre_pagina="";
     public $enlace="";
     public $nombre_modulo="";
+    public $inicio_session="";
+    public $menu="";
+   
 
     function nuevoPagina(){
     //instancia la clase conectar
@@ -18,8 +24,8 @@ class pagina{
     //sentencia SQL para instertar estudiante
 
     //sentencia de insertar en la tabla pagina
-    $sql="INSERT INTO pagina (id_modulo,nombre_pagina,enlace,eliminado)
-    VALUES ($this->id_modulo,'$this->nombre_pagina','$this->enlace',false)";
+    $sql="INSERT INTO pagina (id_modulo,nombre_pagina,enlace,inicio_session,menu,eliminado)
+    VALUES ($this->id_modulo,'$this->nombre_pagina','$this->enlace','$this->inicio_session','$this->menu',false)";
 
     //ejecuta la sentencia
     $result=mysqli_query($conexion,$sql);
@@ -57,6 +63,7 @@ class pagina{
         $this->id_modulo=$registro['id_modulo'];
         $this->nombre_pagina=$registro['nombre_pagina'];
         $this->enlace=$registro['enlace'];
+        $this->inicio_session=$registro['inicio_session'];
         }
     }
 
@@ -68,9 +75,9 @@ class pagina{
         //consulta para actualizar el registro
 
         $sql="UPDATE pagina SET nombre_pagina='$this->nombre_pagina',
-        enlace='$this->enlace'
+        enlace='$this->enlace', inicio_session=$this->inicio_session, menu=$this->menu
         WHERE id_pagina=$this->id_pagina";
-        
+       
         //se ejecuta la consulta
         $result=mysqli_query($conexion,$sql);
         
@@ -88,10 +95,28 @@ class pagina{
     // $sql="DELETE FROM estudiante WHERE id=$this->id";
     //se ejecuta la consulta
     $result=mysqli_query($conexion,$sql);
-    echo $sql;
+    //echo $sql;
     return $result;
     }
+    //se crea la funcion para implementar los permisos
+    function consultar_permiso($enlace){
+        //se instancia el objeto conectar
+        $oConexion= new conectar();
+        //se establece conexión con la base de datos
+        $conexion=$oConexion->conexion();
+        //consulta para retornar un solo registro
+        $sql="SELECT * FROM pagina WHERE enlace='$enlace'";
+        //se ejecuta la consulta
+        $result=mysqli_query($conexion,$sql);
+        $result=mysqli_fetch_all($result,MYSQLI_ASSOC);
+        foreach($result as $registro){ 
+            //se registra la consulta en los parametros
+            $this->id_pagina=$registro['id_pagina'];
+            $this->id_modulo=$registro['id_modulo'];
+            $this->nombre_pagina=$registro['nombre_pagina'];
+            $this->enlace=$registro['enlace'];
+            $this->inicio_session=$registro['inicio_session'];
+            }
+        }
 
 }
-
-?>
